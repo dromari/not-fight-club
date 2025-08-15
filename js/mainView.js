@@ -16,3 +16,4 @@ export default class MainView extends BaseElement {
     this.element.append(page);   
   }
 }
+

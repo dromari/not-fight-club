@@ -1,50 +1,50 @@
 import BaseElement from "./base-element.js";
 
 export default class startPage extends BaseElement {
-    constructor(options) {
-        super(options);
-        this.createView();
-    }
+  constructor(options) {
+    super(options);
+    this.createView();
+  }
 
-    createView() {
-        const wrapperStartPage = new BaseElement({
-            tag: "div",
-            cssClasses: ["wrapper-start-page"],
-        });
+  createView() {
+    const wrapperStartPage = new BaseElement({
+      tag: "div",
+      cssClasses: ["wrapper-start-page"],
+    });
 
-        const greeting = new BaseElement({
-            tag: "h1",
-            cssClasses: ["greeting"],
-            text: "Create Your Character",
-        });
+    const greeting = new BaseElement({
+      tag: "h1",
+      cssClasses: ["greeting"],
+      text: "Create Your Character",
+    });
 
-        const inputName = new BaseElement({
-            tag: "input",
-            cssClasses: ["input-name"], 
-            attributes: {
-                id: "input-name"
-            }           
-        });
+    const inputName = new BaseElement({
+      tag: "input",
+      cssClasses: ["input-name"],
+      attributes: {
+        id: "input-name",
+      },
+    });
 
-        const labelName = new BaseElement({
-            tag: "label",
-            cssClasses: ["label-name"],
-            attributes: {
-                for: "input-name"
-            },
-            text: "Character Name"
-        })
+    const labelName = new BaseElement({
+      tag: "label",
+      cssClasses: ["label-name"],
+      attributes: {
+        for: "input-name",
+      },
+      text: "Character Name",
+    });
 
-        const buttonCreate = new BaseElement({
-            tag: "button",
-            cssClasses: ["button-create"],
-            text: "Create Character",
-        })
+    const buttonCreate = new BaseElement({
+      tag: "button",
+      cssClasses: ["button-create"],
+      text: "Create Character",
+    });
 
-        this.element.append(wrapperStartPage.element);
-        this.element.append(greeting.element);
-        this.element.append(inputName.element);
-        this.element.append(labelName.element);
-        this.element.append(buttonCreate.element);
-    }
+    this.element.append(wrapperStartPage.element);
+    this.element.append(greeting.element);
+    this.element.append(inputName.element);
+    this.element.append(labelName.element);
+    this.element.append(buttonCreate.element);
+  }
 }

@@ -1,52 +1,38 @@
 import BaseElement from "./base-element.js";
 
-export default class characterPage extends BaseElement {
-    constructor(options) {
-        super(options);
-    }
+export default class CharacterPage extends BaseElement {
+  constructor(options) {
+    super(options);
+    this.createView();
+    
+  }
 
-    createView() {
-        const headerCharacterPage = new BaseElement({
-            tag: "header",
-            cssClasses: ["header-character-page"],
-            text: "Character",
-        });
+  createView() {
+    const wrapperCharacter = new BaseElement({
+      tag: "div",
+      cssClasses: ["wrapper-character"],
+    });
 
-        const mainCharacterPade = new BaseElement({
-            tag: "main",
-            cssClasses: ["main-character-page"],
-        })
+    const wrapperDiscription = new BaseElement({
+      tag: "div",
+      cssClasses: ["wrapper-discription"],
+    });
 
-        const wrapperCharacter = new BaseElement({
-            tag: "div",
-            cssClasses: ["wrapper-character"],
-        })
+    this.element.append(wrapperCharacter.element);
+    this.element.append(wrapperDiscription.element);
 
-        const wrapperDiscription = new BaseElement({
-            tag: "div",
-            cssClasses: ["wrapper-discription"],
-        })
+    const wrapperImgCharacter = new BaseElement({
+      tag: "div",
+      cssClasses: ["wrapper-img-character"],
+    });
 
-        mainCharacterPade.element.append(wrapperCharacter);
-        mainCharacterPade.element.append(wrapperDiscription);
+    wrapperCharacter.element.append(wrapperImgCharacter.element);
 
-        const wrapperImgCharacter = new BaseElement({
-            tag: "div",
-            cssClasses: ["wrapper-img-character"]
-        })
+    const imgCharacter = new BaseElement({
+      tag: "img",
+      cssClasses: ["img-character"],
+    });
 
-        wrapperCharacter.element.append(wrapperImgCharacter);
-
-        const imgCharacter = new BaseElement({
-            tag: "img",
-            cssClasses: ["img-character"]
-        })
-
-        wrapperImgCharacter.element.append(imgCharacter);
-
-        
-
-        this.element.append(headerCharacterPage.element);
-        this.element.append(mainCharacterPade);
-    }
+    wrapperImgCharacter.element.append(imgCharacter.element);
+  }
 }
