@@ -23,6 +23,7 @@ export default class startPage extends BaseElement {
       cssClasses: ["input-name"],
       attributes: {
         id: "input-name",
+        
       },
     });
 

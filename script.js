@@ -4,9 +4,9 @@ import MainView from "./js/mainView.js";
 import StartPage from "./js/startPage.js";
 import HomePage from "./js/home-page.js";
 import CharacterPage from "./js/character-page.js";
+import ChoiseCharacterPage from "./js/choise-character-page.js";
+import FightPage from "./js/fight-page.js";
 
-const main = new MainView();
-document.body.append(main.element);
 
 /*------Выключать на Start Page-------*/
 const controlsGame = new ControlsGame ({
@@ -17,6 +17,10 @@ const controlsGame = new ControlsGame ({
 document.body.append(controlsGame.element)
 
 /*------------------------------------*/
+
+
+const main = new MainView();
+document.body.append(main.element);
 
 const startPage = new StartPage({
   tag: "div",
@@ -33,8 +37,18 @@ const characterPage = new CharacterPage({
   cssClasses: ["character-page"],
 });
 
+const choiseCharacterPage = new ChoiseCharacterPage({
+  tag: "div",
+  cssClasses: ["choise-character-page"]
+})
 
-main.setContent(characterPage.element);
+const fightPage = new FightPage ({
+  tag: "div",
+  cssClasses: ["fight-page"]
+})
+
+
+main.setContent(fightPage.element);
 
 // setTimeout(() => {
 //   main.setContent(homePage.element);

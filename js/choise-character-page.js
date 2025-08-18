@@ -6,24 +6,25 @@ export default class ChoiseCharacterPage extends BaseElement {
     super(options);
     this.createView();
     this.createCardsCharacters(data);
+    this.wrapperChoiseCharacter;
   }
 
   createView() {
-    const wrapperChoiseCharacter = new BaseElement({
+    this.wrapperChoiseCharacter = new BaseElement({
       tag: "div",
       cssClasses: ["wrapper-choise-character"],
-    });       
-    this.element.append(wrapperChoiseCharacter.element)   
+    });
+    this.element.append(this.wrapperChoiseCharacter.element);
   }
 
   createCardsCharacters(data) {
-      data.forEach((character) => {
-        const character = new BaseElement({
+    data.forEach((character) => {
+      const characterDiv = new BaseElement({
         tag: "div",
         cssClasses: ["character"],
-        text: character.name
+        text: character.name,
       });
-       wrapperChoiseCharacter.element.append(character.element);
-      });
-    }
+      this.wrapperChoiseCharacter.element.append(characterDiv.element);
+    });
+  }
 }

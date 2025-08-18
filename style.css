@@ -1,0 +1,71 @@
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+  font-size: 30px;
+}
+
+header {
+  margin: 15px 40px;
+}
+
+main {
+  margin: 15px 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*-----fight-page------*/
+
+.fight-page {
+  width: 100%;
+}
+
+.wrapper-fight-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-my-character,
+.container-enemy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: aliceblue;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.container-battlefield {
+  display: flex;
+  justify-content: space-between;
+}
+
+.battle-management {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-setting-fight {
+  display: flex;
+}
+
+.container-attack-zones,
+.container-defence-zones {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-character-img-container,
+.enemy-img-container {
+  width: 300px;
+  height: 300px;
+  margin: 50px 0;
+}
+
+.enemy-img {
+  width: 100%;
+}
