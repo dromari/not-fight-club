@@ -1,9 +1,15 @@
 import BaseElement from "./base-element.js";
+import MainView from "./mainView.js";
+import HomePage from "./home-page.js";
 
 export default class ControlsGame extends BaseElement {
   constructor(options) {
     super(options);
     this.createView();
+    this.namePage;
+    this.iconHome;
+    this.iconProfile;
+    this.iconSettings;
   }
 
   createView() {
@@ -14,7 +20,7 @@ export default class ControlsGame extends BaseElement {
 
     this.element.append(headerWrapper.element);
 
-    const namePage = new BaseElement({
+    this.namePage = new BaseElement({
       tag: "div",
       cssClasses: ["name-page"],
       text: "Main",
@@ -25,27 +31,31 @@ export default class ControlsGame extends BaseElement {
       cssClasses: ["icons-container"],
     });
 
-    headerWrapper.element.append(namePage.element);
+    headerWrapper.element.append(this.namePage.element);
     headerWrapper.element.append(iconsContainer.element);
 
-    const iconHome = new BaseElement({
+    this.iconHome = new BaseElement({
       tag: "a",
-      cssClasses: ["icon-header", "home"],
+      cssClasses: ["icon-header", "home"],      
     });
 
-    const iconProfile = new BaseElement({
+    this.iconProfile = new BaseElement({
       tag: "a",
       cssClasses: ["icon-header", "profile"],
     });
 
-    const iconSettings = new BaseElement({
+    this.iconSettings = new BaseElement({
       tag: "a",
       cssClasses: ["icon-header", "setting"],
     });
 
-    iconsContainer.element.append(iconHome.element);
-    iconsContainer.element.append(iconProfile.element);
-    iconsContainer.element.append(iconSettings.element);
+    iconsContainer.element.append(this.iconHome.element);
+    iconsContainer.element.append(this.iconProfile.element);
+    iconsContainer.element.append(this.iconSettings.element);
+
+    
   }
+
+  
 }
 

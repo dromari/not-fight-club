@@ -7,6 +7,7 @@ export default class MainView extends BaseElement {
       cssClasses: ["main"],
     };
     super(options);
+    this.setContent();
   }
 
   setContent(page) {

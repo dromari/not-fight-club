@@ -262,10 +262,11 @@ export default class FightPage extends BaseElement {
     this.nameEnemy.element.textContent = this.enemy.name;   
     this.lineHealthEnemy.element.max = this.enemy.health;
     this.lineHealthEnemy.element.value =  this.enemy.health;
-    this.dataHealthEnemy.element.textContent = this.enemy.health;
+    this.dataHealthEnemy.element.textContent = `${this.enemy.health} / ${this.enemy.health}`;
     this.enemyImg.element.src = this.enemy.url;
+    
+    
     this.myCharacter;
- 
 
     //взять данные из json
     //создать два поля: мой перс и врага (инициализировать какие рандомные) 

@@ -4,6 +4,8 @@ export default class startPage extends BaseElement {
   constructor(options) {
     super(options);
     this.createView();
+    this.inputName;
+    this.buttonCreate;
   }
 
   createView() {
@@ -18,12 +20,11 @@ export default class startPage extends BaseElement {
       text: "Create Your Character",
     });
 
-    const inputName = new BaseElement({
+    this.inputName = new BaseElement({
       tag: "input",
       cssClasses: ["input-name"],
       attributes: {
         id: "input-name",
-        
       },
     });
 
@@ -36,7 +37,7 @@ export default class startPage extends BaseElement {
       text: "Character Name",
     });
 
-    const buttonCreate = new BaseElement({
+    this.buttonCreate = new BaseElement({
       tag: "button",
       cssClasses: ["button-create"],
       text: "Create Character",
@@ -44,8 +45,8 @@ export default class startPage extends BaseElement {
 
     this.element.append(wrapperStartPage.element);
     this.element.append(greeting.element);
-    this.element.append(inputName.element);
+    this.element.append(this.inputName.element);
     this.element.append(labelName.element);
-    this.element.append(buttonCreate.element);
+    this.element.append(this.buttonCreate.element);
   }
 }
