@@ -7,6 +7,7 @@ import ChoiseCharacterPage from "./js/choise-character-page.js";
 import FightPage from "./js/fight-page.js";
 import Setting from "./js/setting.js";
 import LocalStorage from "./js/localStorage.js";
+import LogBattle from "./js/battle.js";
 
 const localStorage = new LocalStorage();
 
@@ -62,7 +63,6 @@ setting.btnEdit.element.addEventListener("click", () => {
   setting.btnEdit.element.style.display = "none";
   setting.inputName.element.style.display = "block";
   setting.btnSave.element.style.display = "block";
-
   const namePlayer = localStorage.getName();
   setting.inputName.element.value = namePlayer;
 });
@@ -77,7 +77,9 @@ setting.btnSave.element.addEventListener("click", () => {
   setting.btnEdit.element.style.display = "flex";
 });
 
-// main.setContent(choiseCharacterPage.element);
+const logBattle = new LogBattle();
+
+
 
 // setTimeout(() => {
 //   main.setContent(homePage.element);

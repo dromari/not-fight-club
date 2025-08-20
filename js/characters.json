@@ -3,360 +3,54 @@
         "url": "./assets/img/pokemons/0001Bulbasaur.webp",
         "name": "Bulbasaur",
         "data": "https://pokemon.fandom.com/wiki/Bulbasaur",
-        "health": "450",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "450"        
     },
     {
         "url": "./assets/img/pokemons/004Charmander.webp",
         "name": "Charmander",
         "data": "https://pokemon.fandom.com/wiki/Charmander",
-        "health": "390",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "390"
     },
     {
         "url": "./assets/img/pokemons/007Squirtle.webp",
         "name": "Squirtle",
         "data": "https://pokemon.fandom.com/wiki/Squirtle",
-        "health": "440",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "440"
     },
     {
         "url": "./assets/img/pokemons/025Pikachu.webp",
         "name": "Pikachu",
         "data": "https://pokemon.fandom.com/wiki/Pikachu",
-        "health": "450",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "450"
     },
     {
         "url": "./assets/img/pokemons/0039Jigglypuff.webp",
         "name": "Jigglypuff",
         "data": "https://pokemon.fandom.com/wiki/Jigglypuff",
-        "health": "1150",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "1150"
     },
     {
         "url": "./assets/img/pokemons/0054Psyduck.webp",
         "name": "Psyduck",
         "data": "https://pokemon.fandom.com/wiki/Psyduck",
-        "health": "500",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "500"
     },
     {
         "url": "./assets/img/pokemons/133Eevee.webp",
         "name": "Eevee",
         "data": "https://pokemon.fandom.com/wiki/Eevee",
-        "health": "550",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "550"
     },
     {
         "url": "./assets/img/pokemons/0149Dragonite.webp",
         "name": "Dragonite",
         "data": "https://pokemon.fandom.com/wiki/Dragonite",
-        "health": "910",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "910"
     },
      {
         "url": "./assets/img/pokemons/0150Mewtwo.webp",
         "name": "Mewtwo",
         "data": "https://pokemon.fandom.com/wiki/Mewtwo",
-        "health": "1060",
-        "attackZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        },
-        "defenceZones": {
-            "head": {
-                "damage": "30"
-            },
-            "neck": {
-                "damage": "25"
-            },
-            "body": {
-                "damage": "15"
-            },
-            "belly": {
-                "damage": "10"
-            },
-            "legs": {
-                "damage": "10"
-            }
-        }
+        "health": "1060"
     }
 ]

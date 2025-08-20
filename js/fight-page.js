@@ -1,6 +1,8 @@
 import data from './characters.json' with {type: "json"};
+import damage from './damage.json' with {type: "json"};
 import BaseElement from "./base-element.js";
 import shuffleArray from "./utils/shuffle-array.js";
+import Battle from "./battle.js";
 
 export default class FightPage extends BaseElement {
   constructor() {
@@ -9,20 +11,24 @@ export default class FightPage extends BaseElement {
       cssClasses: ["fight-page"],
     };
     super(options);
+    this.zoneInputDefence = [];
+    this.zoneInputAttack = [];
     this.initFight();
     this.createView();
+    this.checkInput();
     this.nameMyCharachter;
   }
 
   initFight() {
     const shuffleData = shuffleArray(data);
     this.enemy = shuffleData[0];
-    
     this.myCharacter = data[3];
-   
-    //создать два поля: мой перс 
-    //заполнить вьюшку данными персонажа
-   
+    this.battle = new Battle(
+      this.myCharacter,
+      this.enemy,
+      this.zoneInputAttack,
+      this.zoneInputDefence
+    );
   }
 
   createView() {
@@ -111,7 +117,6 @@ export default class FightPage extends BaseElement {
         min: "0",
         max: this.myCharacter.health,
         value: this.myCharacter.health,
-      
       },
     });
 
@@ -199,6 +204,12 @@ export default class FightPage extends BaseElement {
       text: "Attack!",
     });
 
+    buttonAttack.element.addEventListener("click", () => {
+      this.battle.battle();
+      //Обновить вьюшку myCharacter и myEnemy;
+      //Обновить log;
+    });
+
     battleManagement.element.append(
       fightConditions.element,
       containerSettingFight.element,
@@ -220,25 +231,30 @@ export default class FightPage extends BaseElement {
       containerDefenceZones.element
     );
 
-    const arrZones = ["head", "neck", "body", "belly", "legs"];
+    const arrZonesAttack = Object.keys(damage[0].attackZones);
 
-    arrZones.forEach((zone) => {
+    const arrZonesDefence = Object.keys(damage[1].defenceZones);
+
+    arrZonesAttack.forEach((zone) => {
       const containerInputLabelZone = new BaseElement({
         tag: "div",
-        cssClasses: ["container-input-label-zone"],
+        cssClasses: ["container-input-label-zone-attack"],
       });
 
       containerAttackZones.element.append(containerInputLabelZone.element);
 
-      const zoneInput = new BaseElement({
+      const input = new BaseElement({
         tag: "input",
         cssClasses: ["input-zone"],
         text: zone,
         attributes: {
           id: `${zone}-attack`,
           type: "checkbox",
+          value: damage[0].attackZones[zone],
         },
       });
+
+      this.zoneInputAttack.push(input);
 
       const zoneLabel = new BaseElement({
         tag: "label",
@@ -249,29 +265,29 @@ export default class FightPage extends BaseElement {
         },
       });
 
-      containerInputLabelZone.element.append(
-        zoneInput.element,
-        zoneLabel.element
-      );
+      containerInputLabelZone.element.append(input.element, zoneLabel.element);
     });
 
-    arrZones.forEach((zone) => {
+    arrZonesDefence.forEach((zone) => {
       const containerInputLabelZone = new BaseElement({
         tag: "div",
-        cssClasses: ["container-input-label-zone"],
+        cssClasses: ["container-input-label-zone-defence"],
       });
 
       containerDefenceZones.element.append(containerInputLabelZone.element);
 
-      const zoneInput = new BaseElement({
+      const input = new BaseElement({
         tag: "input",
         cssClasses: ["input-zone"],
         text: zone,
         attributes: {
           id: `${zone}-defence`,
           type: "checkbox",
+          value: damage[1].defenceZones[zone],
         },
       });
+
+      this.zoneInputDefence.push(input);
 
       const zoneLabel = new BaseElement({
         tag: "label",
@@ -282,14 +298,24 @@ export default class FightPage extends BaseElement {
         },
       });
 
-      containerInputLabelZone.element.append(
-        zoneInput.element,
-        zoneLabel.element
-      );
+      containerInputLabelZone.element.append(input.element, zoneLabel.element);
     });
   }
 
-  //   fight() {
-
-  //   }
+  checkInput() {
+    this.zoneInputAttack.forEach((zone) => {
+      zone.element.addEventListener('click', () => {
+        if(zone.element.checked) {
+          zone.element.checked = true;
+          console.log('check')          
+        }
+      })
+    })
+    
+    this.zoneInputDefence.forEach((zone) => {
+      zone.element.addEventListener("click", () => {
+        console.log(zone.element.value);
+      });
+    });
+  }
 }

@@ -1,0 +1,20 @@
+[
+    {
+        "attackZones": {
+            "head": "30",
+            "neck": "25",
+            "body": "15",
+            "belly": "10",
+            "legs": "10"
+        }
+    },
+    {
+        "defenceZones": {
+            "head": "30",
+            "neck": "25",
+            "body": "15",
+            "belly": "10",
+            "legs": "10"
+        }
+    }
+]
