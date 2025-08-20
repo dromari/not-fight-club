@@ -52,6 +52,8 @@ header.iconSettings.element.addEventListener("click", () => {
 homePage.buttonFight.element.addEventListener("click", () => {
   main.setContent(fightPage.element);
   header.namePage.element.textContent = "Battle";
+  const namePlayer = localStorage.getName();
+  fightPage.nameMyCharachter.element.textContent = namePlayer;
 });
 
 // main.setContent(choiseCharacterPage.element);

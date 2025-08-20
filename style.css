@@ -110,6 +110,7 @@ main {
   margin: 50px 0;
 }
 
+.my-character-img,
 .enemy-img {
   width: 100%;
 }

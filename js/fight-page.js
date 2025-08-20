@@ -11,13 +11,14 @@ export default class FightPage extends BaseElement {
     super(options);
     this.initFight();
     this.createView();
+    this.nameMyCharachter;
   }
 
   initFight() {
     const shuffleData = shuffleArray(data);
     this.enemy = shuffleData[0];
     
-    this.myCharacter;
+    this.myCharacter = data[3];
    
     //создать два поля: мой перс 
     //заполнить вьюшку данными персонажа
@@ -68,9 +69,10 @@ export default class FightPage extends BaseElement {
       enemyContainer.element
     );
 
-    const nameMyCharachter = new BaseElement({
+    this.nameMyCharachter = new BaseElement({
       tag: "div",
       cssClasses: ["name-my-character"],
+      text: this.myCharacter.name,
     });
 
     const myCharachterImgContainer = new BaseElement({
@@ -84,7 +86,7 @@ export default class FightPage extends BaseElement {
     });
 
     myCharachterContainer.element.append(
-      nameMyCharachter.element,
+      this.nameMyCharachter.element,
       myCharachterImgContainer.element,
       healthMyCharachter.element
     );
@@ -93,7 +95,7 @@ export default class FightPage extends BaseElement {
       tag: "img",
       cssClasses: ["my-character-img"],
       attributes: {
-        src: "",
+        src: this.myCharacter.url,
         alt: "img",
       },
     });
@@ -106,16 +108,17 @@ export default class FightPage extends BaseElement {
       attributes: {
         id: "health-my-character",
         type: "range",
-        value: "0",
         min: "0",
-        max: "100",
+        max: this.myCharacter.health,
+        value: this.myCharacter.health,
+      
       },
     });
 
     const dataHealthMyCharacter = new BaseElement({
       tag: "span",
       cssClasses: ["data-health-my-character"],
-      text: `100`,
+      text: `${this.myCharacter.health} / ${this.myCharacter.health}`,
     });
 
     healthMyCharachter.element.append(
