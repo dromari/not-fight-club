@@ -1,10 +1,13 @@
 import BaseElement from "./base-element.js";
 
 export default class CharacterPage extends BaseElement {
-  constructor(options) {
+  constructor() {
+    const options = {
+      tag: "div",
+      cssClasses: ["character-page"],
+    };
     super(options);
     this.createView();
-    
   }
 
   createView() {
@@ -18,8 +21,7 @@ export default class CharacterPage extends BaseElement {
       cssClasses: ["wrapper-discription"],
     });
 
-    this.element.append(wrapperCharacter.element);
-    this.element.append(wrapperDiscription.element);
+    this.element.append(wrapperCharacter.element, wrapperDiscription.element);
 
     const wrapperImgCharacter = new BaseElement({
       tag: "div",

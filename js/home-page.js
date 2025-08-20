@@ -1,7 +1,11 @@
 import BaseElement from "./base-element.js";
 
 export default class HomePage extends BaseElement {
-  constructor(options) {
+  constructor() {
+    const options = {
+      tag: "div",
+      cssClasses: ["home-page"],
+    };
     super(options);
     this.createView();
     this.buttonFight;

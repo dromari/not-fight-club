@@ -1,12 +1,28 @@
 import data from './characters.json' with {type: "json"};
 import BaseElement from "./base-element.js";
+import shuffleArray from "./utils/shuffle-array.js";
 
 export default class FightPage extends BaseElement {
-  constructor(options) {
+  constructor() {
+    const options = {
+      tag: "div",
+      cssClasses: ["fight-page"],
+    };
     super(options);
-    this.createView();
     this.initFight();
-  } 
+    this.createView();
+  }
+
+  initFight() {
+    const shuffleData = shuffleArray(data);
+    this.enemy = shuffleData[0];
+    
+    this.myCharacter;
+   
+    //создать два поля: мой перс 
+    //заполнить вьюшку данными персонажа
+   
+  }
 
   createView() {
     const wrapperFightPage = new BaseElement({
@@ -26,8 +42,10 @@ export default class FightPage extends BaseElement {
       cssClasses: ["container-log-fight"],
     });
 
-    wrapperFightPage.element.append(constainerBattlefield.element);
-    wrapperFightPage.element.append(constainerLogFight.element);
+    wrapperFightPage.element.append(
+      constainerBattlefield.element,
+      constainerLogFight.element
+    );
 
     const myCharachterContainer = new BaseElement({
       tag: "div",
@@ -44,9 +62,11 @@ export default class FightPage extends BaseElement {
       cssClasses: ["container-enemy"],
     });
 
-    constainerBattlefield.element.append(myCharachterContainer.element);
-    constainerBattlefield.element.append(battleManagement.element);
-    constainerBattlefield.element.append(enemyContainer.element);
+    constainerBattlefield.element.append(
+      myCharachterContainer.element,
+      battleManagement.element,
+      enemyContainer.element
+    );
 
     const nameMyCharachter = new BaseElement({
       tag: "div",
@@ -63,17 +83,19 @@ export default class FightPage extends BaseElement {
       cssClasses: ["health-my-character"],
     });
 
-    myCharachterContainer.element.append(nameMyCharachter.element);
-    myCharachterContainer.element.append(myCharachterImgContainer.element);
-    myCharachterContainer.element.append(healthMyCharachter.element);
+    myCharachterContainer.element.append(
+      nameMyCharachter.element,
+      myCharachterImgContainer.element,
+      healthMyCharachter.element
+    );
 
     this.myCharachterImg = new BaseElement({
       tag: "img",
       cssClasses: ["my-character-img"],
-        attributes: {
+      attributes: {
         src: "",
-        alt: "img"
-      }
+        alt: "img",
+      },
     });
 
     myCharachterImgContainer.element.append(this.myCharachterImg.element);
@@ -96,13 +118,15 @@ export default class FightPage extends BaseElement {
       text: `100`,
     });
 
-    healthMyCharachter.element.append(lineHealthMyCharacter.element);
-    healthMyCharachter.element.append(dataHealthMyCharacter.element);
+    healthMyCharachter.element.append(
+      lineHealthMyCharacter.element,
+      dataHealthMyCharacter.element
+    );
 
     this.nameEnemy = new BaseElement({
       tag: "div",
       cssClasses: ["name-enemy"],
-      text: "",
+      text: this.enemy.name,
     });
 
     const enemyImgContainer = new BaseElement({
@@ -115,20 +139,22 @@ export default class FightPage extends BaseElement {
       cssClasses: ["health-enemy"],
     });
 
-    enemyContainer.element.append(this.nameEnemy.element);
-    enemyContainer.element.append(enemyImgContainer.element);
-    enemyContainer.element.append(healthEnemy.element);
+    enemyContainer.element.append(
+      this.nameEnemy.element,
+      enemyImgContainer.element,
+      healthEnemy.element
+    );
 
     this.enemyImg = new BaseElement({
       tag: "img",
       cssClasses: ["enemy-img"],
       attributes: {
-        src: "",
-        alt: "img"
-      }
+        src: this.enemy.url,
+        alt: "img",
+      },
     });
 
-    enemyImgContainer.element.append(this.enemyImg.element)
+    enemyImgContainer.element.append(this.enemyImg.element);
 
     this.lineHealthEnemy = new BaseElement({
       tag: "input",
@@ -136,20 +162,22 @@ export default class FightPage extends BaseElement {
       attributes: {
         id: "health-enemy",
         type: "range",
-        value: "0",
         min: "0",
-        max: "100",
+        max: this.enemy.health,
+        value: this.enemy.health,
       },
     });
 
     this.dataHealthEnemy = new BaseElement({
       tag: "span",
       cssClasses: ["data-health-enemy"],
-      text: `100`,
+      text: `${this.enemy.health} / ${this.enemy.health}`,
     });
 
-    healthEnemy.element.append(this.lineHealthEnemy.element);
-    healthEnemy.element.append(this.dataHealthEnemy.element);
+    healthEnemy.element.append(
+      this.lineHealthEnemy.element,
+      this.dataHealthEnemy.element
+    );
 
     const fightConditions = new BaseElement({
       tag: "p",
@@ -168,9 +196,11 @@ export default class FightPage extends BaseElement {
       text: "Attack!",
     });
 
-    battleManagement.element.append(fightConditions.element);
-    battleManagement.element.append(containerSettingFight.element);
-    battleManagement.element.append(buttonAttack.element);
+    battleManagement.element.append(
+      fightConditions.element,
+      containerSettingFight.element,
+      buttonAttack.element
+    );
 
     const containerAttackZones = new BaseElement({
       tag: "div",
@@ -182,8 +212,10 @@ export default class FightPage extends BaseElement {
       cssClasses: ["container-defence-zones"],
     });
 
-    containerSettingFight.element.append(containerAttackZones.element);
-    containerSettingFight.element.append(containerDefenceZones.element);
+    containerSettingFight.element.append(
+      containerAttackZones.element,
+      containerDefenceZones.element
+    );
 
     const arrZones = ["head", "neck", "body", "belly", "legs"];
 
@@ -214,8 +246,10 @@ export default class FightPage extends BaseElement {
         },
       });
 
-      containerInputLabelZone.element.append(zoneInput.element);
-      containerInputLabelZone.element.append(zoneLabel.element);
+      containerInputLabelZone.element.append(
+        zoneInput.element,
+        zoneLabel.element
+      );
     });
 
     arrZones.forEach((zone) => {
@@ -245,36 +279,14 @@ export default class FightPage extends BaseElement {
         },
       });
 
-      containerInputLabelZone.element.append(zoneInput.element);
-      containerInputLabelZone.element.append(zoneLabel.element);
+      containerInputLabelZone.element.append(
+        zoneInput.element,
+        zoneLabel.element
+      );
     });
   }
 
-  shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }}
+  //   fight() {
 
-  initFight() {
-    this.shuffleArray(data)
-    this.enemy = data[0];
-    this.nameEnemy.element.textContent = this.enemy.name;   
-    this.lineHealthEnemy.element.max = this.enemy.health;
-    this.lineHealthEnemy.element.value =  this.enemy.health;
-    this.dataHealthEnemy.element.textContent = `${this.enemy.health} / ${this.enemy.health}`;
-    this.enemyImg.element.src = this.enemy.url;
-    
-    
-    this.myCharacter;
-
-    //взять данные из json
-    //создать два поля: мой перс и врага (инициализировать какие рандомные) 
-    //заполнить вьюшку данными персонажа
-    //заполнить вьюшку данными врага
-  }
-
-//   fight() {
-
-//   }
+  //   }
 }

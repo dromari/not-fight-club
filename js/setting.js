@@ -21,7 +21,7 @@ export default class Setting extends BaseElement {
     const playerName = new BaseElement({
       tag: "p",
       cssClasses: ["player-name"],
-      text: this.localStorage.getName()
+      text: this.localStorage.getName(),
     });
 
     const btnEdit = new BaseElement({
@@ -38,8 +38,10 @@ export default class Setting extends BaseElement {
       },
     });
 
-    this.element.append(playerNameTitle.element);
-    this.element.append(playerName.element);
-    this.element.append(btnEdit.element);
+    this.element.append(
+      playerNameTitle.element,
+      playerName.element,
+      btnEdit.element
+    );
   }
 }

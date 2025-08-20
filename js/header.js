@@ -1,9 +1,11 @@
 import BaseElement from "./base-element.js";
-import MainView from "./mainView.js";
-import HomePage from "./home-page.js";
 
-export default class ControlsGame extends BaseElement {
-  constructor(options) {
+export default class Header extends BaseElement {
+  constructor() {
+    const options = {
+      tag: "header",
+      cssClasses: ["header"],
+    };
     super(options);
     this.createView();
     this.namePage;
@@ -31,12 +33,11 @@ export default class ControlsGame extends BaseElement {
       cssClasses: ["icons-container"],
     });
 
-    headerWrapper.element.append(this.namePage.element);
-    headerWrapper.element.append(iconsContainer.element);
+    headerWrapper.element.append(this.namePage.element, iconsContainer.element);
 
     this.iconHome = new BaseElement({
       tag: "a",
-      cssClasses: ["icon-header", "home"],      
+      cssClasses: ["icon-header", "home"],
     });
 
     this.iconProfile = new BaseElement({
@@ -49,13 +50,10 @@ export default class ControlsGame extends BaseElement {
       cssClasses: ["icon-header", "setting"],
     });
 
-    iconsContainer.element.append(this.iconHome.element);
-    iconsContainer.element.append(this.iconProfile.element);
-    iconsContainer.element.append(this.iconSettings.element);
-
-    
+    iconsContainer.element.append(
+      this.iconHome.element,
+      this.iconProfile.element,
+      this.iconSettings.element
+    );
   }
-
-  
 }
-

@@ -2,7 +2,11 @@ import data from './characters.json' with {type: "json"};
 import BaseElement from "./base-element.js";
 
 export default class ChoiseCharacterPage extends BaseElement {
-  constructor(options) {
+  constructor() {
+    const options = {
+      tag: "div",
+      cssClasses: ["choise-character-page"],
+    };
     super(options);
     this.createView();
     this.createCardsCharacters(data);
@@ -20,7 +24,7 @@ export default class ChoiseCharacterPage extends BaseElement {
       tag: "button",
       cssClasses: ["button-close"],
     });
-    this.wrapperChoiseCharacter.element.append(btnClose.element)
+    this.wrapperChoiseCharacter.element.append(btnClose.element);
   }
 
   createCardsCharacters(data) {
@@ -53,15 +57,17 @@ export default class ChoiseCharacterPage extends BaseElement {
         cssClasses: ["about-character"],
         text: `About ${character.name}`,
         attributes: {
-          href: character.data, 
-          target: "_blank"         
+          href: character.data,
+          target: "_blank",
         },
       });
 
-      characterDiv.element.append(nameCharacter.element);
-      characterDiv.element.append(containerImgCharacter.element);
-      characterDiv.element.append(healthCharacter.element);
-      characterDiv.element.append(aboutCharacter.element);
+      characterDiv.element.append(
+        nameCharacter.element,
+        containerImgCharacter.element,
+        healthCharacter.element,
+        aboutCharacter.element
+      );
 
       const imgCharacter = new BaseElement({
         tag: "img",

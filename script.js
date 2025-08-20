@@ -1,4 +1,4 @@
-import ControlsGame from "./js/controls-game.js";
+import Header from "./js/header.js";
 import MainView from "./js/mainView.js";
 import StartPage from "./js/startPage.js";
 import HomePage from "./js/home-page.js";
@@ -9,76 +9,49 @@ import Setting from "./js/setting.js";
 import LocalStorage from "./js/localStorage.js";
 
 const localStorage = new LocalStorage();
-// const localKeyName = "myName";
 
+const header = new Header();
+const startPage = new StartPage();
+const homePage = new HomePage();
+const characterPage = new CharacterPage();
+const fightPage = new FightPage();
+const choiseCharacterPage = new ChoiseCharacterPage();
 const main = new MainView();
+
 document.body.append(main.element);
-
-const startPage = new StartPage({
-  tag: "div",
-  cssClasses: ["start-page"],
-});
-
 main.setContent(startPage.element);
-
-const controlsGame = new ControlsGame({
-  tag: "header",
-  cssClasses: ["header"],
-});
-
-const homePage = new HomePage({
-  tag: "div",
-  cssClasses: ["home-page"],
-});
-
-const characterPage = new CharacterPage({
-  tag: "div",
-  cssClasses: ["character-page"],
-});
-
-controlsGame.iconHome.element.addEventListener("click", () => {
-  controlsGame.namePage.element.textContent = "Main";
-  main.setContent(homePage.element);
-});
-
-controlsGame.iconProfile.element.addEventListener("click", () => {
-  controlsGame.namePage.element.textContent = "Character";
-  main.setContent(characterPage.element);
-});
-
-const setting = new Setting(localStorage);
-
-controlsGame.iconSettings.element.addEventListener("click", () => {
-  controlsGame.namePage.element.textContent = "Setting";
-  main.setContent(setting.element);
-});
 
 startPage.buttonCreate.element.addEventListener("click", () => {
   if (startPage.inputName.element.value) {
     localStorage.saveName(startPage.inputName.element.value);
-    // localStorage.setItem(localKeyName, startPage.inputName.element.value);
-    document.body.append(controlsGame.element);
+    document.body.append(header.element);
     main.setContent(homePage.element);
   }
 });
 
-const fightPage = new FightPage({
-  tag: "div",
-  cssClasses: ["fight-page"],
+/*------header-controls---------*/
+
+header.iconHome.element.addEventListener("click", () => {
+  header.namePage.element.textContent = "Main";
+  main.setContent(homePage.element);
 });
 
+header.iconProfile.element.addEventListener("click", () => {
+  header.namePage.element.textContent = "Character";
+  main.setContent(characterPage.element);
+});
+
+header.iconSettings.element.addEventListener("click", () => {
+  header.namePage.element.textContent = "Setting";
+  const setting = new Setting(localStorage);
+  main.setContent(setting.element);
+});
+
+/*------------------------------*/
 
 homePage.buttonFight.element.addEventListener("click", () => {
   main.setContent(fightPage.element);
-  controlsGame.namePage.element.textContent = "Battle";
-});
-
-
-
-
-const choiseCharacterPage = new ChoiseCharacterPage({
-  tag: "div",
-  cssClasses: ["choise-character-page"],
+  header.namePage.element.textContent = "Battle";
 });
 
 // main.setContent(choiseCharacterPage.element);
