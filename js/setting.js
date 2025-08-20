@@ -9,6 +9,8 @@ export default class Setting extends BaseElement {
     super(options);
     this.localStorage = localStorage;
     this.createView();
+    this.playerName;
+    this.btnEdit;
   }
 
   createView() {
@@ -18,30 +20,42 @@ export default class Setting extends BaseElement {
       text: "Player Name:",
     });
 
-    const playerName = new BaseElement({
+    this.playerName = new BaseElement({
       tag: "p",
       cssClasses: ["player-name"],
       text: this.localStorage.getName(),
     });
 
-    const btnEdit = new BaseElement({
+    this.inputName = new BaseElement({
+      tag: "input",
+      cssClasses: ["input-name-setting"],
+      attributes: {
+        id: "input-name-setting",
+      },
+    });
+
+    this.btnEdit = new BaseElement({
       tag: "button",
       cssClasses: ["button-edit"],
       text: "Edit",
     });
 
-    this.inputName = new BaseElement({
-      tag: "input",
-      cssClasses: ["input-name"],
-      attributes: {
-        id: "input-name",
-      },
+    this.btnSave = new BaseElement({
+      tag: "button",
+      cssClasses: ["button-save"],
+      text: "Save",
     });
 
     this.element.append(
       playerNameTitle.element,
-      playerName.element,
-      btnEdit.element
+      this.playerName.element,
+      this.btnEdit.element,
+      this.inputName.element,
+      this.btnSave.element
     );
+  }
+
+  updateName() {
+    this.playerName.element.textContent = this.localStorage.getName();
   }
 }

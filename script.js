@@ -16,6 +16,7 @@ const homePage = new HomePage();
 const characterPage = new CharacterPage();
 const fightPage = new FightPage();
 const choiseCharacterPage = new ChoiseCharacterPage();
+const setting = new Setting(localStorage);
 const main = new MainView();
 
 document.body.append(main.element);
@@ -42,9 +43,9 @@ header.iconProfile.element.addEventListener("click", () => {
 });
 
 header.iconSettings.element.addEventListener("click", () => {
-  header.namePage.element.textContent = "Setting";
-  const setting = new Setting(localStorage);
+  setting.updateName();
   main.setContent(setting.element);
+  header.namePage.element.textContent = "Setting";
 });
 
 /*------------------------------*/
@@ -54,6 +55,26 @@ homePage.buttonFight.element.addEventListener("click", () => {
   header.namePage.element.textContent = "Battle";
   const namePlayer = localStorage.getName();
   fightPage.nameMyCharachter.element.textContent = namePlayer;
+});
+
+setting.btnEdit.element.addEventListener("click", () => {
+  setting.playerName.element.style.display = "none";
+  setting.btnEdit.element.style.display = "none";
+  setting.inputName.element.style.display = "block";
+  setting.btnSave.element.style.display = "block";
+
+  const namePlayer = localStorage.getName();
+  setting.inputName.element.value = namePlayer;
+});
+
+setting.btnSave.element.addEventListener("click", () => {
+  localStorage.saveName(setting.inputName.element.value);
+  setting.inputName.element.style.display = "none";
+  setting.btnSave.element.style.display = "none";
+  setting.updateName();
+  main.setContent(setting.element);
+  setting.playerName.element.style.display = "flex";
+  setting.btnEdit.element.style.display = "flex";
 });
 
 // main.setContent(choiseCharacterPage.element);

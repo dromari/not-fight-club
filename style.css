@@ -166,3 +166,19 @@ main {
   top: -30px;
   border: none;
 }
+
+/*------settting--------*/
+
+.player-name {
+  display: block;
+}
+
+.input-name-setting {
+  display: none;
+}
+
+.button-save {
+  display: none;
+}
+
+
