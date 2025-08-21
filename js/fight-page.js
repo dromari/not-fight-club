@@ -11,12 +11,15 @@ export default class FightPage extends BaseElement {
       cssClasses: ["fight-page"],
     };
     super(options);
+    this.checkInputAttack;
+    this.checkInputDefence;
     this.zoneInputDefence = [];
     this.zoneInputAttack = [];
     this.initFight();
     this.createView();
-    this.checkInput();
     this.nameMyCharachter;
+    this.checkAttack;
+    this.checkDefence;
   }
 
   initFight() {
@@ -198,14 +201,66 @@ export default class FightPage extends BaseElement {
       cssClasses: ["container-setting-fight"],
     });
 
-    const buttonAttack = new BaseElement({
+    // containerSettingFight.element.addEventListener("click", (e) => {
+    //   if (e.target.classList.contains("input-zone")) {
+
+    //     this.containerAttackZones.element.addEventListener("click", (e) => {
+    //       if (e.target.classList.contains("input-zone")) {
+    //         const checkedInputs = this.zoneInputAttack.filter(
+    //           (checkbox) => checkbox.checked
+    //         );
+    //         this.checkInputAttack = checkedInputs.length;
+    //         console.log(this.checkInputAttack);
+    //       }
+    //     });
+
+    //     this.containerDefenceZones.element.addEventListener("click", (e) => {
+    //       if (e.target.classList.contains("input-zone")) {
+    //         const checkedInput = this.zoneInputDefence.filter(
+    //           (checkbox) => checkbox.checked
+    //         );
+    //         this.checkInputDefence = checkedInput.length;
+    //         console.log(this.checkInputDefence);
+    //       }
+    //     });
+
+    //     if(this.checkInputAttack == 1 && this.checkInputDefence == 2) {
+    //       console.log('yyy')
+    //       this.buttonAttack.disabled = false;
+    //     }
+    //   }
+    // });
+
+    containerSettingFight.element.addEventListener("click", (e) => {
+      if (e.target.classList.contains("input-zone")) {
+        const checkedInputs = this.zoneInputAttack.filter(
+          (checkbox) => checkbox.checked
+        );
+        this.checkInputAttack = checkedInputs.length;
+
+        const checkedInput = this.zoneInputDefence.filter(
+          (checkbox) => checkbox.checked
+        );
+        this.checkInputDefence = checkedInput.length;
+      
+        if (this.checkInputAttack == 1 && this.checkInputDefence == 2) {
+          console.log("yyy");
+          console.log()
+          this.buttonAttack.element.disabled = false;
+        }
+      }
+    });
+
+    this.buttonAttack = new BaseElement({
       tag: "button",
       cssClasses: ["button-attack"],
       text: "Attack!",
+      attributes: {
+        disabled: "",
+      },
     });
 
-    buttonAttack.element.addEventListener("click", () => {
-      this.battle.battle();
+    this.buttonAttack.element.addEventListener("click", () => {
       //Обновить вьюшку myCharacter и myEnemy;
       //Обновить log;
     });
@@ -213,22 +268,40 @@ export default class FightPage extends BaseElement {
     battleManagement.element.append(
       fightConditions.element,
       containerSettingFight.element,
-      buttonAttack.element
+      this.buttonAttack.element
     );
 
-    const containerAttackZones = new BaseElement({
+    this.containerAttackZones = new BaseElement({
       tag: "div",
       cssClasses: ["container-attack-zones"],
     });
 
-    const containerDefenceZones = new BaseElement({
+    // this.containerAttackZones.element.addEventListener('click', (e) => {
+    //   if(e.target.classList.contains('input-zone')) {
+    //    const checkedInputs = this.zoneInputAttack.filter(checkbox => checkbox.checked);
+    //    this.checkInputAttack = checkedInputs.length;
+    //     console.log(this.checkInputAttack)
+    //   }
+    // })
+
+    this.containerDefenceZones = new BaseElement({
       tag: "div",
       cssClasses: ["container-defence-zones"],
     });
 
+    // this.containerDefenceZones.element.addEventListener("click", (e) => {
+    //   if (e.target.classList.contains("input-zone")) {
+    //     const checkedInput = this.zoneInputDefence.filter(
+    //       (checkbox) => checkbox.checked
+    //     );
+    //     this.checkInputDefence = checkedInput.length;
+    //     console.log(this.checkInputDefence);
+    //   }
+    // });
+
     containerSettingFight.element.append(
-      containerAttackZones.element,
-      containerDefenceZones.element
+      this.containerAttackZones.element,
+      this.containerDefenceZones.element
     );
 
     const arrZonesAttack = Object.keys(damage[0].attackZones);
@@ -241,7 +314,7 @@ export default class FightPage extends BaseElement {
         cssClasses: ["container-input-label-zone-attack"],
       });
 
-      containerAttackZones.element.append(containerInputLabelZone.element);
+      this.containerAttackZones.element.append(containerInputLabelZone.element);
 
       const input = new BaseElement({
         tag: "input",
@@ -254,7 +327,7 @@ export default class FightPage extends BaseElement {
         },
       });
 
-      this.zoneInputAttack.push(input);
+      this.zoneInputAttack.push(input.element);
 
       const zoneLabel = new BaseElement({
         tag: "label",
@@ -274,7 +347,9 @@ export default class FightPage extends BaseElement {
         cssClasses: ["container-input-label-zone-defence"],
       });
 
-      containerDefenceZones.element.append(containerInputLabelZone.element);
+      this.containerDefenceZones.element.append(
+        containerInputLabelZone.element
+      );
 
       const input = new BaseElement({
         tag: "input",
@@ -287,7 +362,7 @@ export default class FightPage extends BaseElement {
         },
       });
 
-      this.zoneInputDefence.push(input);
+      this.zoneInputDefence.push(input.element);
 
       const zoneLabel = new BaseElement({
         tag: "label",
@@ -299,23 +374,6 @@ export default class FightPage extends BaseElement {
       });
 
       containerInputLabelZone.element.append(input.element, zoneLabel.element);
-    });
-  }
-
-  checkInput() {
-    this.zoneInputAttack.forEach((zone) => {
-      zone.element.addEventListener('click', () => {
-        if(zone.element.checked) {
-          zone.element.checked = true;
-          console.log('check')          
-        }
-      })
-    })
-    
-    this.zoneInputDefence.forEach((zone) => {
-      zone.element.addEventListener("click", () => {
-        console.log(zone.element.value);
-      });
     });
   }
 }

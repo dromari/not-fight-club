@@ -10,10 +10,10 @@ export default class Battle {
 
   battle(){
    
-    console.log(Object.entries(damage[0].attackZones))
-    console.log(Object.keys(damage[0].attackZones))
-    console.log(Object.values(damage[0].attackZones))
+    // console.log(Object.entries(damage[0].attackZones))
+    // console.log(Object.keys(damage[0].attackZones))
+    // console.log(Object.values(damage[0].attackZones))
    
-    console.log(this.zoneInputDefence)
+    console.log('battle')
   }
 }
