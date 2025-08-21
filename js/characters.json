@@ -3,54 +3,91 @@
         "url": "./assets/img/pokemons/0001Bulbasaur.webp",
         "name": "Bulbasaur",
         "data": "https://pokemon.fandom.com/wiki/Bulbasaur",
-        "health": "450"        
+        "health": 450,
+        "leftoverHealth": 450,
+        "damage": 15,
+        "zoneAttack": 1,
+        "zoneDefence": 2       
     },
     {
         "url": "./assets/img/pokemons/004Charmander.webp",
         "name": "Charmander",
         "data": "https://pokemon.fandom.com/wiki/Charmander",
-        "health": "390"
+        "health": 390,
+        "leftoverHealth": 390,
+        "damage": 10,
+        "zoneAttack": 2,
+        "zoneDefence": 1
+        
     },
     {
         "url": "./assets/img/pokemons/007Squirtle.webp",
         "name": "Squirtle",
         "data": "https://pokemon.fandom.com/wiki/Squirtle",
-        "health": "440"
+        "health": 440,
+        "leftoverHealth": 440,
+        "damage": 15,
+        "zoneAttack": 1,
+        "zoneDefence": 3 
     },
     {
         "url": "./assets/img/pokemons/025Pikachu.webp",
         "name": "Pikachu",
         "data": "https://pokemon.fandom.com/wiki/Pikachu",
-        "health": "450"
+        "health": 450,
+        "leftoverHealth": 450,
+        "damage": 15,
+        "zoneAttack": 1,
+        "zoneDefence": 2 
     },
     {
         "url": "./assets/img/pokemons/0039Jigglypuff.webp",
         "name": "Jigglypuff",
         "data": "https://pokemon.fandom.com/wiki/Jigglypuff",
-        "health": "1150"
+        "health": 1150,
+        "leftoverHealth": 1150,
+        "damage": 5,
+        "zoneAttack": 1,
+        "zoneDefence": 1
     },
     {
         "url": "./assets/img/pokemons/0054Psyduck.webp",
         "name": "Psyduck",
         "data": "https://pokemon.fandom.com/wiki/Psyduck",
-        "health": "500"
+        "health": 500,
+        "leftoverHealth": 500,
+        "damage": 10,
+        "zoneAttack": 3,
+        "zoneDefence": 1
     },
     {
         "url": "./assets/img/pokemons/133Eevee.webp",
         "name": "Eevee",
         "data": "https://pokemon.fandom.com/wiki/Eevee",
-        "health": "550"
+        "health": 550,
+        "leftoverHealth": 550,
+        "damage": 10,
+        "zoneAttack": 1,
+        "zoneDefence": 3
     },
     {
         "url": "./assets/img/pokemons/0149Dragonite.webp",
         "name": "Dragonite",
         "data": "https://pokemon.fandom.com/wiki/Dragonite",
-        "health": "910"
+        "health": 910,
+        "leftoverHealth": 910,
+        "damage": 5,
+        "zoneAttack": 2,
+        "zoneDefence": 1
     },
      {
         "url": "./assets/img/pokemons/0150Mewtwo.webp",
         "name": "Mewtwo",
         "data": "https://pokemon.fandom.com/wiki/Mewtwo",
-        "health": "1060"
+        "health": 1060,
+        "leftoverHealth": 1060,
+        "damage": 5,
+        "zoneAttack": 1,
+        "zoneDefence": 2 
     }
 ]

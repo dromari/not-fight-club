@@ -21,7 +21,15 @@ const setting = new Setting(localStorage);
 const main = new MainView();
 
 document.body.append(main.element);
-main.setContent(startPage.element);
+
+window.onload = () => {
+  if (localStorage.getName() != null) {
+    document.body.append(header.element);
+    main.setContent(homePage.element);
+  } else {
+    main.setContent(startPage.element);
+  }
+};
 
 startPage.buttonCreate.element.addEventListener("click", () => {
   if (startPage.inputName.element.value) {
@@ -78,8 +86,6 @@ setting.btnSave.element.addEventListener("click", () => {
 });
 
 const logBattle = new LogBattle();
-
-
 
 // setTimeout(() => {
 //   main.setContent(homePage.element);

@@ -1,19 +1,24 @@
-import damage from './damage.json' with {type: "json"};
-
 export default class Battle {
-  constructor(myCharacter, enemy, zoneInputAttack, zoneInputDefence) {
+  constructor(myCharacter, enemy) {
     this.myCharacter = myCharacter;
     this.enemy = enemy;
-    this.zoneInputAttack = zoneInputAttack;
-    this.zoneInputDefence = zoneInputDefence;
   }
 
-  battle(){
+  battle() {
+    this.attack(this.myCharacter, this.enemy);
+    this.attack(this.enemy, this.myCharacter);
    
-    // console.log(Object.entries(damage[0].attackZones))
-    // console.log(Object.keys(damage[0].attackZones))
-    // console.log(Object.values(damage[0].attackZones))
-   
-    console.log('battle')
+  }
+
+  attack(myCharacter, enemy) {
+    myCharacter.zonesAttack.forEach(zone => {
+      if(enemy.zonesDefence.includes(zone)){
+        console.log(`${myCharacter.name} hit ${enemy.name} to ${zone}, but ${enemy.name} blocked hit`)
+      } else {
+        console.log(`${myCharacter.name} hit ${enemy.name} to ${zone} and caused ${myCharacter.damage} damage`)
+        enemy.leftoverHealth = enemy.leftoverHealth - myCharacter.damage;
+      }
+    });
+
   }
 }

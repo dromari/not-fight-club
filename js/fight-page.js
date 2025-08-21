@@ -1,5 +1,5 @@
 import data from './characters.json' with {type: "json"};
-import damage from './damage.json' with {type: "json"};
+
 import BaseElement from "./base-element.js";
 import shuffleArray from "./utils/shuffle-array.js";
 import Battle from "./battle.js";
@@ -11,6 +11,7 @@ export default class FightPage extends BaseElement {
       cssClasses: ["fight-page"],
     };
     super(options);
+
     this.checkInputAttack;
     this.checkInputDefence;
     this.zoneInputDefence = [];
@@ -23,15 +24,18 @@ export default class FightPage extends BaseElement {
   }
 
   initFight() {
+    this.configureCharacter();
+    this.battle = new Battle(this.myCharacter, this.enemy);
+  }
+
+  configureCharacter() {
+   
     const shuffleData = shuffleArray(data);
     this.enemy = shuffleData[0];
-    this.myCharacter = data[3];
-    this.battle = new Battle(
-      this.myCharacter,
-      this.enemy,
-      this.zoneInputAttack,
-      this.zoneInputDefence
-    );
+   
+    this.myCharacter = structuredClone(data[2]);
+    this.myCharacter.zoneAttack = 1;
+    this.myCharacter.zoneDefence = 2;
   }
 
   createView() {
@@ -123,15 +127,15 @@ export default class FightPage extends BaseElement {
       },
     });
 
-    const dataHealthMyCharacter = new BaseElement({
+    this.dataHealthMyCharacter = new BaseElement({
       tag: "span",
       cssClasses: ["data-health-my-character"],
-      text: `${this.myCharacter.health} / ${this.myCharacter.health}`,
+      text: `${this.myCharacter.leftoverHealth} / ${this.myCharacter.health}`,
     });
 
     healthMyCharachter.element.append(
       lineHealthMyCharacter.element,
-      dataHealthMyCharacter.element
+      this.dataHealthMyCharacter.element
     );
 
     this.nameEnemy = new BaseElement({
@@ -182,7 +186,7 @@ export default class FightPage extends BaseElement {
     this.dataHealthEnemy = new BaseElement({
       tag: "span",
       cssClasses: ["data-health-enemy"],
-      text: `${this.enemy.health} / ${this.enemy.health}`,
+      text: `${this.enemy.leftoverHealth} / ${this.enemy.health}`,
     });
 
     healthEnemy.element.append(
@@ -201,51 +205,21 @@ export default class FightPage extends BaseElement {
       cssClasses: ["container-setting-fight"],
     });
 
-    // containerSettingFight.element.addEventListener("click", (e) => {
-    //   if (e.target.classList.contains("input-zone")) {
-
-    //     this.containerAttackZones.element.addEventListener("click", (e) => {
-    //       if (e.target.classList.contains("input-zone")) {
-    //         const checkedInputs = this.zoneInputAttack.filter(
-    //           (checkbox) => checkbox.checked
-    //         );
-    //         this.checkInputAttack = checkedInputs.length;
-    //         console.log(this.checkInputAttack);
-    //       }
-    //     });
-
-    //     this.containerDefenceZones.element.addEventListener("click", (e) => {
-    //       if (e.target.classList.contains("input-zone")) {
-    //         const checkedInput = this.zoneInputDefence.filter(
-    //           (checkbox) => checkbox.checked
-    //         );
-    //         this.checkInputDefence = checkedInput.length;
-    //         console.log(this.checkInputDefence);
-    //       }
-    //     });
-
-    //     if(this.checkInputAttack == 1 && this.checkInputDefence == 2) {
-    //       console.log('yyy')
-    //       this.buttonAttack.disabled = false;
-    //     }
-    //   }
-    // });
-
     containerSettingFight.element.addEventListener("click", (e) => {
       if (e.target.classList.contains("input-zone")) {
-        const checkedInputs = this.zoneInputAttack.filter(
-          (checkbox) => checkbox.checked
-        );
-        this.checkInputAttack = checkedInputs.length;
+        const checkedInputAttack = this.zoneInputAttack
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => checkbox.textContent);
+        this.myCharacter.zonesAttack = checkedInputAttack;
+        this.checkInputAttack = checkedInputAttack.length;
 
-        const checkedInput = this.zoneInputDefence.filter(
-          (checkbox) => checkbox.checked
-        );
-        this.checkInputDefence = checkedInput.length;
-      
+        const checkedInputDefence = this.zoneInputDefence
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => checkbox.textContent);
+        this.myCharacter.zonesDefence = checkedInputDefence;
+        this.checkInputDefence = checkedInputDefence.length;
+
         if (this.checkInputAttack == 1 && this.checkInputDefence == 2) {
-          console.log("yyy");
-          console.log()
           this.buttonAttack.element.disabled = false;
         }
       }
@@ -261,6 +235,14 @@ export default class FightPage extends BaseElement {
     });
 
     this.buttonAttack.element.addEventListener("click", () => {
+       const arrZones = ["head", "neck", "body", "belly", "legs"];
+ let shuffleZones = shuffleArray(arrZones);    
+    this.enemy.zonesAttack = shuffleZones.slice(-this.enemy.zoneAttack);
+    shuffleZones = shuffleArray(arrZones);
+    this.enemy.zonesDefence = shuffleZones.slice(-this.enemy.zoneDefence);
+      this.battle.battle();
+      this.dataHealthEnemy.element.textContent = `${this.enemy.leftoverHealth} / ${this.enemy.health}`;
+      this.dataHealthMyCharacter.element.textContent = `${this.myCharacter.leftoverHealth} / ${this.myCharacter.health}`
       //Обновить вьюшку myCharacter и myEnemy;
       //Обновить log;
     });
@@ -276,39 +258,19 @@ export default class FightPage extends BaseElement {
       cssClasses: ["container-attack-zones"],
     });
 
-    // this.containerAttackZones.element.addEventListener('click', (e) => {
-    //   if(e.target.classList.contains('input-zone')) {
-    //    const checkedInputs = this.zoneInputAttack.filter(checkbox => checkbox.checked);
-    //    this.checkInputAttack = checkedInputs.length;
-    //     console.log(this.checkInputAttack)
-    //   }
-    // })
-
     this.containerDefenceZones = new BaseElement({
       tag: "div",
       cssClasses: ["container-defence-zones"],
     });
-
-    // this.containerDefenceZones.element.addEventListener("click", (e) => {
-    //   if (e.target.classList.contains("input-zone")) {
-    //     const checkedInput = this.zoneInputDefence.filter(
-    //       (checkbox) => checkbox.checked
-    //     );
-    //     this.checkInputDefence = checkedInput.length;
-    //     console.log(this.checkInputDefence);
-    //   }
-    // });
 
     containerSettingFight.element.append(
       this.containerAttackZones.element,
       this.containerDefenceZones.element
     );
 
-    const arrZonesAttack = Object.keys(damage[0].attackZones);
+    const arrZones = ["head", "neck", "body", "belly", "legs"];
 
-    const arrZonesDefence = Object.keys(damage[1].defenceZones);
-
-    arrZonesAttack.forEach((zone) => {
+    arrZones.forEach((zone) => {
       const containerInputLabelZone = new BaseElement({
         tag: "div",
         cssClasses: ["container-input-label-zone-attack"],
@@ -323,7 +285,6 @@ export default class FightPage extends BaseElement {
         attributes: {
           id: `${zone}-attack`,
           type: "checkbox",
-          value: damage[0].attackZones[zone],
         },
       });
 
@@ -341,7 +302,7 @@ export default class FightPage extends BaseElement {
       containerInputLabelZone.element.append(input.element, zoneLabel.element);
     });
 
-    arrZonesDefence.forEach((zone) => {
+    arrZones.forEach((zone) => {
       const containerInputLabelZone = new BaseElement({
         tag: "div",
         cssClasses: ["container-input-label-zone-defence"],
@@ -358,7 +319,6 @@ export default class FightPage extends BaseElement {
         attributes: {
           id: `${zone}-defence`,
           type: "checkbox",
-          value: damage[1].defenceZones[zone],
         },
       });
 
