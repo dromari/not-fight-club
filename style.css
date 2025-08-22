@@ -1,0 +1,196 @@
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+button {
+  width: 250px;
+  height: 55px;
+  font-size: 30px;
+}
+
+/*-------header--------*/
+
+.header {
+  margin: 25px 40px;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icons-container {
+  display: flex;
+  gap: 15px;
+}
+
+.icon-header {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.home {
+  background: center / cover url(./assets/svg/home.svg) no-repeat;
+}
+
+.profile {
+  background: center / 90% url(./assets/svg/user.svg) no-repeat;
+}
+
+.setting {
+  background: center / cover url(./assets/svg/setting.svg) no-repeat;
+}
+
+/*------main-------*/
+
+main {
+  margin: 55px 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*-----start-page--------*/
+
+.start-page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/*-----fight-page------*/
+
+.fight-page {
+  width: 100%;
+}
+
+.wrapper-fight-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-my-character,
+.container-enemy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: aliceblue;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.container-battlefield {
+  display: flex;
+  justify-content: space-between;
+}
+
+.battle-management {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.fight-conditions {
+  text-align: center;
+}
+
+.container-setting-fight {
+  display: flex;
+  gap: 50px;
+}
+
+.container-attack-zones,
+.container-defence-zones {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-character-img-container,
+.enemy-img-container {
+  width: 300px;
+  height: 300px;
+  margin: 50px 0;
+}
+
+.my-character-img,
+.enemy-img {
+  width: 100%;
+}
+
+.health-my-character,
+.health-enemy {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line-health {
+  width: 100%;
+}
+
+/*------choise-character-page---------*/
+
+.wrapper-choise-character {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+}
+
+.character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: aliceblue;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.container-img-character {
+  width: 300px;
+  height: 300px;
+  margin: 50px 0;
+}
+
+.character-img {
+  width: 100%;
+}
+
+.button-close {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: center / cover url(./assets/svg/close.svg);
+  cursor: pointer;
+  right: -30px;
+  top: -30px;
+  border: none;
+}
+
+/*------settting--------*/
+
+.player-name {
+  display: block;
+}
+
+.input-name-setting {
+  display: none;
+}
+
+.button-save {
+  display: none;
+}
+
+

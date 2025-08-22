@@ -1,0 +1,25 @@
+const STORAGE_KEY ="pokemon-game";
+export default class LocalStorage {
+    saveObject(value){
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(value))
+    }
+    getObject() {
+        let storageObject = localStorage.getItem(STORAGE_KEY)
+        if(storageObject) {
+            return JSON.parse(storageObject);
+        } else {
+            return {};
+        }        
+    }
+
+    saveName(newName) {
+        const storageObject = this.getObject();
+        storageObject.name = newName;
+        this.saveObject(storageObject)
+    }
+
+    getName() {
+        const storageObject = this.getObject();
+        return storageObject.name
+    }
+}
