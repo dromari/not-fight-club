@@ -29,10 +29,8 @@ export default class FightPage extends BaseElement {
   }
 
   configureCharacter() {
-   
     const shuffleData = shuffleArray(data);
     this.enemy = shuffleData[0];
-   
     this.myCharacter = structuredClone(data[2]);
     this.myCharacter.zoneAttack = 1;
     this.myCharacter.zoneDefence = 2;
@@ -51,14 +49,14 @@ export default class FightPage extends BaseElement {
       cssClasses: ["container-battlefield"],
     });
 
-    const constainerLogFight = new BaseElement({
+    this.constainerLogFight = new BaseElement({
       tag: "div",
       cssClasses: ["container-log-fight"],
     });
 
     wrapperFightPage.element.append(
       constainerBattlefield.element,
-      constainerLogFight.element
+      this.constainerLogFight.element
     );
 
     const myCharachterContainer = new BaseElement({
@@ -115,15 +113,13 @@ export default class FightPage extends BaseElement {
 
     myCharachterImgContainer.element.append(this.myCharachterImg.element);
 
-    const lineHealthMyCharacter = new BaseElement({
-      tag: "input",
+    this.lineHealthMyCharacter = new BaseElement({
+      tag: "progress",
       cssClasses: ["line-health"],
       attributes: {
         id: "health-my-character",
-        type: "range",
-        min: "0",
         max: this.myCharacter.health,
-        value: this.myCharacter.health,
+        value: this.myCharacter.leftoverHealth,
       },
     });
 
@@ -134,7 +130,7 @@ export default class FightPage extends BaseElement {
     });
 
     healthMyCharachter.element.append(
-      lineHealthMyCharacter.element,
+      this.lineHealthMyCharacter.element,
       this.dataHealthMyCharacter.element
     );
 
@@ -172,14 +168,12 @@ export default class FightPage extends BaseElement {
     enemyImgContainer.element.append(this.enemyImg.element);
 
     this.lineHealthEnemy = new BaseElement({
-      tag: "input",
+      tag: "progress",
       cssClasses: ["line-health"],
       attributes: {
         id: "health-enemy",
-        type: "range",
-        min: "0",
         max: this.enemy.health,
-        value: this.enemy.health,
+        value: this.enemy.leftoverHealth,
       },
     });
 
@@ -235,16 +229,33 @@ export default class FightPage extends BaseElement {
     });
 
     this.buttonAttack.element.addEventListener("click", () => {
-       const arrZones = ["head", "neck", "body", "belly", "legs"];
- let shuffleZones = shuffleArray(arrZones);    
-    this.enemy.zonesAttack = shuffleZones.slice(-this.enemy.zoneAttack);
-    shuffleZones = shuffleArray(arrZones);
-    this.enemy.zonesDefence = shuffleZones.slice(-this.enemy.zoneDefence);
-      this.battle.battle();
+      const arrZones = ["head", "neck", "body", "belly", "legs"];
+      let shuffleZones = shuffleArray(arrZones);
+      this.enemy.zonesAttack = shuffleZones.slice(-this.enemy.zoneAttack);
+      shuffleZones = shuffleArray(arrZones);
+      this.enemy.zonesDefence = shuffleZones.slice(-this.enemy.zoneDefence);
+      this.textLogBattle = this.battle.battle();
       this.dataHealthEnemy.element.textContent = `${this.enemy.leftoverHealth} / ${this.enemy.health}`;
-      this.dataHealthMyCharacter.element.textContent = `${this.myCharacter.leftoverHealth} / ${this.myCharacter.health}`
-      //Обновить вьюшку myCharacter и myEnemy;
-      //Обновить log;
+      this.dataHealthMyCharacter.element.textContent = `${this.myCharacter.leftoverHealth} / ${this.myCharacter.health}`;
+      this.lineHealthMyCharacter.element.value =
+      this.myCharacter.leftoverHealth;
+      this.lineHealthEnemy.element.value = this.enemy.leftoverHealth;
+      const containerTextFirstLine = new BaseElement({
+        tag: "p",
+        cssClasses: ["log-fight-first-line"],
+        text: this.textLogBattle[0],
+      });
+
+      const containerTextSecondLine = new BaseElement({
+        tag: "p",
+        cssClasses: ["log-fight-second-line"],
+        text: this.textLogBattle[1],
+      });
+
+      this.constainerLogFight.element.append(
+        containerTextFirstLine.element,
+        containerTextSecondLine.element
+      );
     });
 
     battleManagement.element.append(

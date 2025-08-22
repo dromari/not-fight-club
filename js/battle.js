@@ -5,20 +5,21 @@ export default class Battle {
   }
 
   battle() {
-    this.attack(this.myCharacter, this.enemy);
-    this.attack(this.enemy, this.myCharacter);
-   
+    const a = this.attack(this.myCharacter, this.enemy);
+    const b = this.attack(this.enemy, this.myCharacter);
+    return [a, b];
   }
 
   attack(myCharacter, enemy) {
-    myCharacter.zonesAttack.forEach(zone => {
-      if(enemy.zonesDefence.includes(zone)){
-        console.log(`${myCharacter.name} hit ${enemy.name} to ${zone}, but ${enemy.name} blocked hit`)
+    let result;
+    myCharacter.zonesAttack.forEach((zone) => {
+      if (enemy.zonesDefence.includes(zone)) {
+        result = `${myCharacter.name} hit ${enemy.name} to ${zone}, but ${enemy.name} blocked hit`;
       } else {
-        console.log(`${myCharacter.name} hit ${enemy.name} to ${zone} and caused ${myCharacter.damage} damage`)
         enemy.leftoverHealth = enemy.leftoverHealth - myCharacter.damage;
+        result = `${myCharacter.name} hit ${enemy.name} to ${zone} and caused ${myCharacter.damage} damage`;
       }
     });
-
+    return result;
   }
 }
