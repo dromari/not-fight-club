@@ -22,4 +22,13 @@ export default class LocalStorage {
         const storageObject = this.getObject();
         return storageObject.name
     }
+
+    saveMyCharacter(myCharacter) {
+        localStorage.setItem("myCharacter", JSON.stringify(myCharacter));
+
+    }
+
+    getMyCharacter() {
+        return JSON.parse(localStorage.getItem("myCaracter"));       
+    }
 }

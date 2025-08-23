@@ -6,6 +6,7 @@ export default class CharacterPage extends BaseElement {
       tag: "div",
       cssClasses: ["character-page"],
     };
+  
     super(options);
     this.createView();
   }
