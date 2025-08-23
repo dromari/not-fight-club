@@ -29,6 +29,22 @@ export default class LocalStorage {
     }
 
     getMyCharacter() {
-        return JSON.parse(localStorage.getItem("myCaracter"));       
+        return JSON.parse(localStorage.getItem("myCharacter"));       
+    }
+
+    saveLeftoverMyHealth(value) {
+         localStorage.setItem("leftoverMyHealth", value);
+    }
+
+    getLeftoverMyHealthy() {
+        return localStorage.getItem("leftoverMyHealth")
+    }
+    
+    saveLeftoverEnemy(value) {
+         localStorage.setItem("leftoverEnemy", value);
+    }
+
+    getLeftoverEnemy() {
+        return localStorage.getItem("leftoverEnemy")
     }
 }

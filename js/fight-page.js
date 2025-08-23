@@ -3,6 +3,7 @@ import data from './characters.json' with {type: "json"};
 import BaseElement from "./base-element.js";
 import shuffleArray from "./utils/shuffle-array.js";
 import Battle from "./battle.js";
+import Dialog from "./dialog.js";
 
 export default class FightPage extends BaseElement {
   constructor(localStorage) {
@@ -24,28 +25,46 @@ export default class FightPage extends BaseElement {
   }
 
   initFight() {
+    if (this.localStorage.getMyCharacter()) {
+      this.myCharacter = this.localStorage.getMyCharacter();
+    } else {
+      this.myCharacter = structuredClone(data[3]);
+      this.localStorage.saveMyCharacter(this.myCharacter);
+    }
     const shuffleData = shuffleArray(data);
     this.enemy = shuffleData[0];
-    this.myCharacter = structuredClone(data[2]);
-    console.log(this.myCharacter)
-    this.localStorage.saveMyCharacter(this.myCharacter);
+    console.log(this.localStorage.getMyCharacter());
     this.configureCharacter();
     this.battle = new Battle(this.myCharacter, this.enemy);
+    this.localStorage.saveLeftoverMyHealth(this.myCharacter.leftoverHealth);
+    this.localStorage.saveLeftoverEnemy(this.enemy.leftoverHealth);
   }
 
   configureCharacter() {
-    
     this.myCharacter.zoneAttack = 1;
     this.myCharacter.zoneDefence = 2;
   }
 
+  updateView() {
+    this.myCharachterImg.element.src = this.localStorage.getMyCharacter().url;
+    this.lineHealthMyCharacter.element.max =
+      this.localStorage.getMyCharacter().health;
+    this.lineHealthMyCharacter.element.value =
+      this.localStorage.getMyCharacter().leftoverHealth;
+    this.dataHealthMyCharacter.element.textContent = `${
+      this.localStorage.getMyCharacter().leftoverHealth
+    } / ${this.localStorage.getMyCharacter().health}`;
+  }
+
   createView() {
+    this.dialog = new Dialog();
+
     const wrapperFightPage = new BaseElement({
       tag: "div",
       cssClasses: ["wrapper-fight-page"],
     });
 
-    this.element.append(wrapperFightPage.element);
+    this.element.append(wrapperFightPage.element, this.dialog.element);
 
     const constainerBattlefield = new BaseElement({
       tag: "div",
@@ -238,11 +257,15 @@ export default class FightPage extends BaseElement {
       shuffleZones = shuffleArray(arrZones);
       this.enemy.zonesDefence = shuffleZones.slice(-this.enemy.zoneDefence);
       this.textLogBattle = this.battle.battle();
+      this.localStorage.saveLeftoverMyHealth(this.myCharacter.leftoverHealth);
+      this.localStorage.saveLeftoverEnemy(this.enemy.leftoverHealth);
+
       this.dataHealthEnemy.element.textContent = `${this.enemy.leftoverHealth} / ${this.enemy.health}`;
       this.dataHealthMyCharacter.element.textContent = `${this.myCharacter.leftoverHealth} / ${this.myCharacter.health}`;
       this.lineHealthMyCharacter.element.value =
-      this.myCharacter.leftoverHealth;
+        this.myCharacter.leftoverHealth;
       this.lineHealthEnemy.element.value = this.enemy.leftoverHealth;
+
       const containerTextFirstLine = new BaseElement({
         tag: "p",
         cssClasses: ["log-fight-first-line"],
@@ -259,6 +282,27 @@ export default class FightPage extends BaseElement {
         containerTextFirstLine.element,
         containerTextSecondLine.element
       );
+
+      if (
+        this.myCharacter.leftoverHealth <= 0 ||
+        this.enemy.leftoverHealth <= 0
+      ) {
+        if (this.myCharacter.leftoverHealth <= 0) {
+          this.lineHealthMyCharacter.element.value = 0;
+          this.dataHealthMyCharacter.element.textContent = `${0} / ${
+            this.myCharacter.health
+          }`;
+          this.dialog.textDialog.element.textContent = "You lose";
+        } else {
+          this.lineHealthMyCharacter.element.value = 0;
+          this.dataHealthEnemy.element.textContent = `${0} / ${
+            this.enemy.health
+          }`;
+          this.dialog.textDialog.element.textContent = "You win";
+        }
+        this.buttonAttack.element.disabled = true;
+        this.dialog.element.showModal();
+      }
     });
 
     battleManagement.element.append(

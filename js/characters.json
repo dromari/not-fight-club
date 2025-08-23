@@ -5,7 +5,7 @@
         "data": "https://pokemon.fandom.com/wiki/Bulbasaur",
         "health": 450,
         "leftoverHealth": 450,
-        "damage": 15,
+        "damage": 25,
         "zoneAttack": 1,
         "zoneDefence": 2       
     },
@@ -15,7 +15,7 @@
         "data": "https://pokemon.fandom.com/wiki/Charmander",
         "health": 390,
         "leftoverHealth": 390,
-        "damage": 10,
+        "damage": 30,
         "zoneAttack": 2,
         "zoneDefence": 1
         
@@ -26,7 +26,7 @@
         "data": "https://pokemon.fandom.com/wiki/Squirtle",
         "health": 440,
         "leftoverHealth": 440,
-        "damage": 15,
+        "damage": 35,
         "zoneAttack": 1,
         "zoneDefence": 3 
     },
@@ -36,7 +36,7 @@
         "data": "https://pokemon.fandom.com/wiki/Pikachu",
         "health": 450,
         "leftoverHealth": 450,
-        "damage": 15,
+        "damage": 35,
         "zoneAttack": 1,
         "zoneDefence": 2 
     },
@@ -44,9 +44,9 @@
         "url": "./assets/img/pokemons/0039Jigglypuff.webp",
         "name": "Jigglypuff",
         "data": "https://pokemon.fandom.com/wiki/Jigglypuff",
-        "health": 1150,
+        "health": 600,
         "leftoverHealth": 1150,
-        "damage": 5,
+        "damage": 15,
         "zoneAttack": 1,
         "zoneDefence": 1
     },
@@ -56,7 +56,7 @@
         "data": "https://pokemon.fandom.com/wiki/Psyduck",
         "health": 500,
         "leftoverHealth": 500,
-        "damage": 10,
+        "damage": 25,
         "zoneAttack": 3,
         "zoneDefence": 1
     },
@@ -66,7 +66,7 @@
         "data": "https://pokemon.fandom.com/wiki/Eevee",
         "health": 550,
         "leftoverHealth": 550,
-        "damage": 10,
+        "damage": 25,
         "zoneAttack": 1,
         "zoneDefence": 3
     },
@@ -74,9 +74,9 @@
         "url": "./assets/img/pokemons/0149Dragonite.webp",
         "name": "Dragonite",
         "data": "https://pokemon.fandom.com/wiki/Dragonite",
-        "health": 910,
+        "health": 650,
         "leftoverHealth": 910,
-        "damage": 5,
+        "damage": 25,
         "zoneAttack": 2,
         "zoneDefence": 1
     },
@@ -84,9 +84,9 @@
         "url": "./assets/img/pokemons/0150Mewtwo.webp",
         "name": "Mewtwo",
         "data": "https://pokemon.fandom.com/wiki/Mewtwo",
-        "health": 1060,
+        "health": 650,
         "leftoverHealth": 1060,
-        "damage": 5,
+        "damage": 15,
         "zoneAttack": 1,
         "zoneDefence": 2 
     }

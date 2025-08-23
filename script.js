@@ -3,11 +3,9 @@ import MainView from "./js/mainView.js";
 import StartPage from "./js/startPage.js";
 import HomePage from "./js/home-page.js";
 import CharacterPage from "./js/character-page.js";
-import ChoiseCharacterPage from "./js/choise-character-page.js";
 import FightPage from "./js/fight-page.js";
 import Setting from "./js/setting.js";
 import LocalStorage from "./js/localStorage.js";
-import LogBattle from "./js/battle.js";
 
 const localStorage = new LocalStorage();
 
@@ -15,8 +13,7 @@ const header = new Header();
 const startPage = new StartPage();
 const homePage = new HomePage();
 const fightPage = new FightPage(localStorage);
-const characterPage = new CharacterPage();
-const choiseCharacterPage = new ChoiseCharacterPage();
+const characterPage = new CharacterPage(localStorage);
 const setting = new Setting(localStorage);
 const main = new MainView();
 
@@ -64,6 +61,7 @@ homePage.buttonFight.element.addEventListener("click", () => {
   header.namePage.element.textContent = "Battle";
   const namePlayer = localStorage.getName();
   fightPage.nameMyCharachter.element.textContent = namePlayer;
+  fightPage.updateView();
 });
 
 setting.btnEdit.element.addEventListener("click", () => {
@@ -85,7 +83,9 @@ setting.btnSave.element.addEventListener("click", () => {
   setting.btnEdit.element.style.display = "flex";
 });
 
-const logBattle = new LogBattle();
+fightPage.dialog.closeDialog.element.addEventListener("click", () => {
+  fightPage.dialog.element.close();
+});
 
 // setTimeout(() => {
 //   main.setContent(homePage.element);
