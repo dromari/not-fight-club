@@ -5,13 +5,13 @@ import shuffleArray from "./utils/shuffle-array.js";
 import Battle from "./battle.js";
 
 export default class FightPage extends BaseElement {
-  constructor() {
+  constructor(localStorage) {
     const options = {
       tag: "div",
       cssClasses: ["fight-page"],
     };
     super(options);
-
+    this.localStorage = localStorage;
     this.checkInputAttack;
     this.checkInputDefence;
     this.zoneInputDefence = [];
@@ -24,14 +24,17 @@ export default class FightPage extends BaseElement {
   }
 
   initFight() {
+    const shuffleData = shuffleArray(data);
+    this.enemy = shuffleData[0];
+    this.myCharacter = structuredClone(data[2]);
+    console.log(this.myCharacter)
+    this.localStorage.saveMyCharacter(this.myCharacter);
     this.configureCharacter();
     this.battle = new Battle(this.myCharacter, this.enemy);
   }
 
   configureCharacter() {
-    const shuffleData = shuffleArray(data);
-    this.enemy = shuffleData[0];
-    this.myCharacter = structuredClone(data[2]);
+    
     this.myCharacter.zoneAttack = 1;
     this.myCharacter.zoneDefence = 2;
   }
