@@ -1,6 +1,5 @@
 import data from './characters.json' with {type: "json"};
 import BaseElement from "./base-element.js";
-import CharacterPage from './character-page.js';
 
 export default class ChoiseCharacterPage extends BaseElement {
   constructor(localStorage) {
@@ -46,7 +45,6 @@ export default class ChoiseCharacterPage extends BaseElement {
         if (!e.target.classList.contains("about-character")) {
           this.localStorage.saveMyCharacter(character);
           this.element.classList.remove("choise");
-          console.log(this.localStorage.getMyCharacter());
         }
       });
 

@@ -11,13 +11,13 @@ export default class Battle {
   }
 
   attack(myCharacter, enemy) {
-    let result;
+    let result = [];
     myCharacter.zonesAttack.forEach((zone) => {
       if (enemy.zonesDefence.includes(zone)) {
-        result = `${myCharacter.name} hit ${enemy.name} to ${zone}, but ${enemy.name} blocked hit`;
+        result.push(`${myCharacter.name} hit ${enemy.name} to ${zone}, but ${enemy.name} blocked hit`);
       } else {
         enemy.leftoverHealth = enemy.leftoverHealth - myCharacter.damage;
-        result = `${myCharacter.name} hit ${enemy.name} to ${zone} and caused ${myCharacter.damage} damage`;
+        result.push(`${myCharacter.name} hit ${enemy.name} to ${zone} and caused ${myCharacter.damage} damage`);
       }
     });
     return result;
