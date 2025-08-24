@@ -1,25 +1,38 @@
+html {
+  height: 100%;
+}
+
 body {
   max-width: 1440px;
   margin: 0 auto;
   font-size: 30px;
   display: flex;
   flex-direction: column-reverse;
+  background-color: rgba(0, 0, 0, 0.5);
+  background: center / cover no-repeat url(./assets/img/start.jpg)
+    rgba(0, 0, 0, 0.5);
 }
 
 button {
   width: 250px;
   height: 55px;
   font-size: 30px;
+  cursor: pointer;
 }
 
 span {
   margin-right: 10px;
 }
 
+h1 {
+  margin: 0;
+}
+
 /*-------header--------*/
 
 .header {
-  margin: 25px 40px;
+  padding: 25px 40px;
+  background-color: aliceblue;
 }
 
 .header-wrapper {
@@ -68,6 +81,29 @@ main {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding: 20%;
+  background: aliceblue;
+  margin-top: 10%;
+  border-radius: 10px;
+}
+
+.input-name {
+  height: 60px;
+  font-size: 30px;
+}
+
+/*-------home-page------*/
+
+.home-page {
+  margin-top: 20%;
+}
+
+.button-fight {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 30px ridge rgb(255, 0, 0);
+  font-size: 60px;
 }
 
 /*-----fight-page------*/
@@ -91,16 +127,26 @@ main {
   background: aliceblue;
   padding: 25px;
   border-radius: 10px;
+  border: 5px solid #7474b3;
 }
 
 .container-battlefield {
   display: flex;
   justify-content: space-between;
+  gap: 50px;
+  background-color: aliceblue;
+  padding: 30px;
 }
 
 .container-log-fight {
   overflow-y: scroll;
-  max-height: 500px;
+  background-color: aliceblue;
+  height: 400px;
+  border-radius: 10px;
+}
+
+.fight-conditions {
+  margin: 0;
 }
 
 .battle-management {
@@ -114,15 +160,33 @@ main {
   text-align: center;
 }
 
+.container-input-label-zone-attack,
+.container-input-label-zone-defence {
+  display: flex;
+  gap: 10px;
+}
+
 .container-setting-fight {
   display: flex;
   gap: 50px;
+}
+
+.input-zone {
+  width: 25px;
+  height: 25px;
 }
 
 .container-attack-zones,
 .container-defence-zones {
   display: flex;
   flex-direction: column;
+  gap: 15px;
+}
+
+.log-fight-first-line,
+.log-fight-second-line {
+  padding: 0 30px;
+  margin: 10px 0;
 }
 
 .my-character-img-container,
@@ -153,7 +217,7 @@ main {
 .enemy-2,
 .enemy-10 {
   font-weight: 800;
-  color:rgb(20, 141, 20);
+  color: rgb(20, 141, 20);
 }
 
 .my-character-2,
@@ -166,7 +230,7 @@ main {
 .my-character-4,
 .enemy-4 {
   font-weight: 800;
-  color:rgb(192, 109, 0);
+  color: rgb(192, 109, 0);
 }
 
 .my-character-7,
@@ -180,7 +244,7 @@ main {
 .my-character-11,
 .enemy-11 {
   font-weight: 800;
-  color:rgb(118, 9, 139);
+  color: rgb(118, 9, 139);
 }
 
 /*------choise-character-page---------*/
@@ -201,6 +265,7 @@ main {
   padding: 25px;
   border-radius: 10px;
   cursor: pointer;
+  border: 4px solid #7474b3;
 }
 
 .about-character {
@@ -235,6 +300,10 @@ main {
 
 .input-name-setting {
   display: none;
+  margin-bottom: 40px;
+  height: 50px;
+  width: 250px;
+  font-size: 30px;
 }
 
 .button-save {
@@ -248,6 +317,7 @@ main {
   justify-content: start;
   width: 100%;
   gap: 50px;
+  background-color: aliceblue;
 }
 
 .choise-character-page {
@@ -267,6 +337,14 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 40px;
+}
+
+/*-------setting---------*/
+
+.setting-page {
+  background-color: aliceblue;
+  width: 100%;
+  padding: 100px;
 }
 
 /*-----dialog-------*/

@@ -38,7 +38,7 @@ export default class startPage extends BaseElement {
       attributes: {
         for: "input-name",
       },
-      text: "Character Name",
+      text: "Character Name:",
     });
 
     this.buttonCreate = new BaseElement({
@@ -50,8 +50,8 @@ export default class startPage extends BaseElement {
     this.element.append(
       wrapperStartPage.element,
       greeting.element,
-      this.inputName.element,
       labelName.element,
+      this.inputName.element,      
       this.buttonCreate.element
     );
   }
