@@ -18,7 +18,7 @@ export default class Battle {
       } else {
         enemy.leftoverHealth = enemy.leftoverHealth - myCharacter.damage;
         result.push(`${myCharacter.name} hit ${enemy.name} to ${zone} and caused ${myCharacter.damage} damage`);
-      }
+      }        
     });
     return result;
   }

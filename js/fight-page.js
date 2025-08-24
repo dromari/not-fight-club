@@ -247,6 +247,9 @@ export default class FightPage extends BaseElement {
         if (this.checkInputAttack == 1 && this.checkInputDefence == 2) {
           this.buttonAttack.element.disabled = false;
         }
+        else {
+          this.buttonAttack.element.disabled = true;
+        }
       }
     });
 
@@ -276,12 +279,14 @@ export default class FightPage extends BaseElement {
       this.lineHealthEnemy.element.value = this.enemy.leftoverHealth;
 
       this.textLogBattle[0].forEach((log) => {
+        // console.log(this.textLogBattle[0])
         const logBattle = new BaseElement({
           tag: "p",
           cssClasses: ["log-fight-first-line"],
           text: log,
         });
         this.constainerLogFight.element.append(logBattle.element);
+        // console.log(logBattle)
       });
 
       this.textLogBattle[1].forEach((log) => {
