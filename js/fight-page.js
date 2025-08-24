@@ -25,12 +25,12 @@ export default class FightPage extends BaseElement {
 
   initFight() {
     if (this.localStorage.getMyCharacter()) {
-      this.myCharacter = this.localStorage.getMyCharacter();     
+      this.myCharacter = this.localStorage.getMyCharacter();
     } else {
       this.myCharacter = structuredClone(data[3]);
-      this.localStorage.saveMyCharacter(this.myCharacter); 
+      this.localStorage.saveMyCharacter(this.myCharacter);
       this.localStorage.saveLoses(0);
-      this.localStorage.saveWins(0);      
+      this.localStorage.saveWins(0);
     }
     const shuffleData = shuffleArray(data);
     this.enemy = shuffleData[0];
@@ -45,8 +45,8 @@ export default class FightPage extends BaseElement {
     this.myCharacter.zoneDefence = 2;
   }
 
-  updateView() {   
-    this.nameMyCharachter.element.textContent = this.localStorage.getName();  
+  updateView() {
+    this.nameMyCharachter.element.textContent = this.localStorage.getName();
     this.myCharachterImg.element.src = this.localStorage.getMyCharacter().url;
     this.lineHealthMyCharacter.element.max =
       this.localStorage.getMyCharacter().health;
@@ -58,15 +58,11 @@ export default class FightPage extends BaseElement {
 
     this.nameEnemy.element.textContent = this.enemy.name;
     this.enemyImg.element.src = this.enemy.url;
-    this.lineHealthEnemy.element.max =
-      this.enemy.health;
-    this.lineHealthEnemy.element.value =
-      this.enemy.leftoverHealth;
-    this.dataHealthEnemy.element.textContent = `${
-      this.enemy.leftoverHealth
-    } / ${this.enemy.health}`;
+    this.lineHealthEnemy.element.max = this.enemy.health;
+    this.lineHealthEnemy.element.value = this.enemy.leftoverHealth;
+    this.dataHealthEnemy.element.textContent = `${this.enemy.leftoverHealth} / ${this.enemy.health}`;
 
-    this.constainerLogFight.element.innerHTML = ""
+    this.constainerLogFight.element.innerHTML = "";
   }
 
   createView() {
@@ -88,7 +84,6 @@ export default class FightPage extends BaseElement {
       tag: "div",
       cssClasses: ["container-log-fight"],
     });
-
 
     wrapperFightPage.element.append(
       constainerBattlefield.element,
@@ -275,29 +270,29 @@ export default class FightPage extends BaseElement {
       this.localStorage.saveLeftoverEnemy(this.enemy.leftoverHealth);
 
       this.dataHealthEnemy.element.textContent = `${this.enemy.leftoverHealth} / ${this.enemy.health}`;
-       this.dataHealthMyCharacter.element.textContent = `${this.myCharacter.leftoverHealth} / ${this.myCharacter.health}`;
+      this.dataHealthMyCharacter.element.textContent = `${this.myCharacter.leftoverHealth} / ${this.myCharacter.health}`;
       this.lineHealthMyCharacter.element.value =
         this.myCharacter.leftoverHealth;
       this.lineHealthEnemy.element.value = this.enemy.leftoverHealth;
 
-      const containerTextFirstLine = new BaseElement({
-        tag: "p",
-        cssClasses: ["log-fight-first-line"],
-        text: this.textLogBattle[0],
+      this.textLogBattle[0].forEach((log) => {
+        const logBattle = new BaseElement({
+          tag: "p",
+          cssClasses: ["log-fight-first-line"],
+          text: log,
+        });
+        this.constainerLogFight.element.append(logBattle.element);
       });
 
-      const containerTextSecondLine = new BaseElement({
-        tag: "p",
-        cssClasses: ["log-fight-second-line"],
-        text: this.textLogBattle[1],
+      this.textLogBattle[1].forEach((log) => {
+        const logBattle = new BaseElement({
+          tag: "p",
+          cssClasses: ["log-fight-second-line"],
+          text: log,
+        });
+        this.constainerLogFight.element.append(logBattle.element);
       });
-
-      this.constainerLogFight.element.append(
-        containerTextFirstLine.element,
-        containerTextSecondLine.element
-      );
-
-         
+    
       if (
         this.myCharacter.leftoverHealth <= 0 ||
         this.enemy.leftoverHealth <= 0
@@ -307,16 +302,17 @@ export default class FightPage extends BaseElement {
           this.dataHealthMyCharacter.element.textContent = `${0} / ${
             this.myCharacter.health
           }`;
-          this.dialog.textDialog.element.textContent = "You lose";          
-          this.localStorage.saveLoses(Number(this.localStorage.getLoses()) + 1);        
+          this.dialog.textDialog.element.textContent = "You lose";
+
+          this.localStorage.saveLoses(Number(this.localStorage.getLoses()) + 1);
         } else {
           this.lineHealthMyCharacter.element.value = 0;
           this.dataHealthEnemy.element.textContent = `${0} / ${
             this.enemy.health
           }`;
-          this.dialog.textDialog.element.textContent = "You win";         
+          this.dialog.textDialog.element.textContent = "You win";
+
           this.localStorage.saveWins(Number(this.localStorage.getWins()) + 1);
-                 
         }
         this.buttonAttack.element.disabled = true;
         this.dialog.element.showModal();
