@@ -25,8 +25,5 @@ export default class Dialog extends BaseElement {
 
     this.element.append(this.textDialog.element, this.closeDialog.element);
 
-    // closeDialog.element.addEventListener("click", () => {
-    //   this.element.close();            
-    // });
   }
 }

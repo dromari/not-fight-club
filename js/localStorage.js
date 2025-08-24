@@ -45,6 +45,22 @@ export default class LocalStorage {
     }
 
     getLeftoverEnemy() {
-        return localStorage.getItem("leftoverEnemy")
+        return localStorage.getItem("leftoverEnemy");
+    }
+
+    saveWins(value) {
+        localStorage.setItem("wins", value);
+    }
+
+    getWins() {
+        return localStorage.getItem("wins")
+    }
+
+    saveLoses(value) {
+        localStorage.setItem("loses", value);
+    }
+
+    getLoses() {
+        return localStorage.getItem("loses")
     }
 }
