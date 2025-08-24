@@ -87,9 +87,12 @@ setting.btnSave.element.addEventListener("click", () => {
 
 fightPage.dialog.closeDialog.element.addEventListener("click", () => {
   fightPage.dialog.element.close();
+  fightPage.dialog.element.style.display = "none"
   header.namePage.element.textContent = "Main";
   main.setContent(homePage.element);
 });
+
+console.log('Привет! Игра адаптирована для разрешения 1440px. Не выполнены пункты: 1. Критические удары (5 баллов) 2. Бонусное задание (20 баллов)')
 
 
 
