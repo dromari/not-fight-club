@@ -326,7 +326,7 @@ export default class FightPage extends BaseElement {
           this.dataHealthMyCharacter.element.textContent = `${0} / ${
             this.myCharacter.health
           }`;
-          this.dialog.textDialog.element.textContent = "You lose";
+          this.dialog.textDialog.element.textContent = "You losed! Don't be upset. Try again.";
 
           this.localStorage.saveLoses(Number(this.localStorage.getLoses()) + 1);
         } else {
@@ -334,12 +334,14 @@ export default class FightPage extends BaseElement {
           this.dataHealthEnemy.element.textContent = `${0} / ${
             this.enemy.health
           }`;
-          this.dialog.textDialog.element.textContent = "You win";
+          this.dialog.textDialog.element.textContent = "Congratulations! You win. Try again.";
 
           this.localStorage.saveWins(Number(this.localStorage.getWins()) + 1);
         }
         this.buttonAttack.element.disabled = true;
+        this.dialog.element.style.display = "flex";
         this.dialog.element.showModal();
+        
       }
 
        this.constainerLogFight.scrollTop = this.constainerLogFight.scrollHeigth;
