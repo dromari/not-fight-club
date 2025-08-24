@@ -2,12 +2,14 @@ import data from './characters.json' with {type: "json"};
 import BaseElement from "./base-element.js";
 
 export default class ChoiseCharacterPage extends BaseElement {
-  constructor() {
+  constructor(localStorage) {
     const options = {
       tag: "div",
       cssClasses: ["choise-character-page"],
     };
     super(options);
+
+    this.localStorage = localStorage;
     this.createView();
     this.createCardsCharacters(data);
     this.wrapperChoiseCharacter;
@@ -25,6 +27,10 @@ export default class ChoiseCharacterPage extends BaseElement {
       cssClasses: ["button-close"],
     });
     this.wrapperChoiseCharacter.element.append(btnClose.element);
+
+    btnClose.element.addEventListener("click", () => {
+      this.element.classList.remove("choise");
+    });
   }
 
   createCardsCharacters(data) {
@@ -34,6 +40,15 @@ export default class ChoiseCharacterPage extends BaseElement {
         cssClasses: ["character"],
       });
       this.wrapperChoiseCharacter.element.append(characterDiv.element);
+
+      characterDiv.element.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("about-character")) {
+          this.localStorage.saveMyCharacter(character);
+          this.element.classList.remove("choise");
+          console.log(this.localStorage.getMyCharacter());
+          
+        }
+      });
 
       const nameCharacter = new BaseElement({
         tag: "p",
