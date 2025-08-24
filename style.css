@@ -75,6 +75,7 @@ main {
 .wrapper-fight-page {
   display: flex;
   flex-direction: column;
+  gap: 50px;
 }
 
 .container-my-character,
@@ -91,6 +92,11 @@ main {
 .container-battlefield {
   display: flex;
   justify-content: space-between;
+}
+
+.container-log-fight {
+  overflow-y: scroll;
+  max-height: 500px;
 }
 
 .battle-management {

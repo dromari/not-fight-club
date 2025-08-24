@@ -41,10 +41,13 @@ startPage.buttonCreate.element.addEventListener("click", () => {
 header.iconHome.element.addEventListener("click", () => {
   header.namePage.element.textContent = "Main";
   main.setContent(homePage.element);
+  
 });
 
 header.iconProfile.element.addEventListener("click", () => {
   header.namePage.element.textContent = "Character";
+  fightPage.initFight();
+  characterPage.updatePage();
   main.setContent(characterPage.element);
 });
 
@@ -59,8 +62,7 @@ header.iconSettings.element.addEventListener("click", () => {
 homePage.buttonFight.element.addEventListener("click", () => {
   main.setContent(fightPage.element);
   header.namePage.element.textContent = "Battle";
-  const namePlayer = localStorage.getName();
-  fightPage.nameMyCharachter.element.textContent = namePlayer;
+  fightPage.initFight();
   fightPage.updateView();
 });
 
@@ -85,7 +87,11 @@ setting.btnSave.element.addEventListener("click", () => {
 
 fightPage.dialog.closeDialog.element.addEventListener("click", () => {
   fightPage.dialog.element.close();
+  header.namePage.element.textContent = "Main";
+  main.setContent(homePage.element);
 });
+
+
 
 // setTimeout(() => {
 //   main.setContent(homePage.element);

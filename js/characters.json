@@ -7,7 +7,9 @@
         "leftoverHealth": 450,
         "damage": 25,
         "zoneAttack": 1,
-        "zoneDefence": 2       
+        "zoneDefence": 2,
+        "wins": 0,
+        "loses": 0       
     },
     {
         "url": "./assets/img/pokemons/004Charmander.webp",
@@ -17,7 +19,9 @@
         "leftoverHealth": 390,
         "damage": 30,
         "zoneAttack": 2,
-        "zoneDefence": 1
+        "zoneDefence": 1,
+        "wins": 0,
+        "loses": 0     
         
     },
     {
@@ -28,7 +32,9 @@
         "leftoverHealth": 440,
         "damage": 35,
         "zoneAttack": 1,
-        "zoneDefence": 3 
+        "zoneDefence": 3,
+        "wins": 0,
+        "loses": 0      
     },
     {
         "url": "./assets/img/pokemons/025Pikachu.webp",
@@ -38,17 +44,21 @@
         "leftoverHealth": 450,
         "damage": 35,
         "zoneAttack": 1,
-        "zoneDefence": 2 
+        "zoneDefence": 2,
+        "wins": 0,
+        "loses": 0      
     },
     {
         "url": "./assets/img/pokemons/0039Jigglypuff.webp",
         "name": "Jigglypuff",
         "data": "https://pokemon.fandom.com/wiki/Jigglypuff",
         "health": 600,
-        "leftoverHealth": 1150,
+        "leftoverHealth": 600,
         "damage": 15,
         "zoneAttack": 1,
-        "zoneDefence": 1
+        "zoneDefence": 1,
+        "wins": 0,
+        "loses": 0     
     },
     {
         "url": "./assets/img/pokemons/0054Psyduck.webp",
@@ -58,7 +68,9 @@
         "leftoverHealth": 500,
         "damage": 25,
         "zoneAttack": 3,
-        "zoneDefence": 1
+        "zoneDefence": 1,
+        "wins": 0,
+        "loses": 0     
     },
     {
         "url": "./assets/img/pokemons/133Eevee.webp",
@@ -68,26 +80,32 @@
         "leftoverHealth": 550,
         "damage": 25,
         "zoneAttack": 1,
-        "zoneDefence": 3
+        "zoneDefence": 3,
+        "wins": 0,
+        "loses": 0     
     },
     {
         "url": "./assets/img/pokemons/0149Dragonite.webp",
         "name": "Dragonite",
         "data": "https://pokemon.fandom.com/wiki/Dragonite",
         "health": 650,
-        "leftoverHealth": 910,
+        "leftoverHealth": 650,
         "damage": 25,
         "zoneAttack": 2,
-        "zoneDefence": 1
+        "zoneDefence": 1,
+        "wins": 0,
+        "loses": 0     
     },
      {
         "url": "./assets/img/pokemons/0150Mewtwo.webp",
         "name": "Mewtwo",
         "data": "https://pokemon.fandom.com/wiki/Mewtwo",
         "health": 650,
-        "leftoverHealth": 1060,
+        "leftoverHealth": 650,
         "damage": 15,
         "zoneAttack": 1,
-        "zoneDefence": 2 
+        "zoneDefence": 2,
+        "wins": 0,
+        "loses": 0      
     }
 ]
