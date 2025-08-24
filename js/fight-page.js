@@ -85,6 +85,8 @@ export default class FightPage extends BaseElement {
       cssClasses: ["container-log-fight"],
     });
 
+   
+
     wrapperFightPage.element.append(
       constainerBattlefield.element,
       this.constainerLogFight.element
@@ -339,6 +341,8 @@ export default class FightPage extends BaseElement {
         this.buttonAttack.element.disabled = true;
         this.dialog.element.showModal();
       }
+
+       this.constainerLogFight.scrollTop = this.constainerLogFight.scrollHeigth;
     });
 
     battleManagement.element.append(

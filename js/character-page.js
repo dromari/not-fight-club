@@ -19,8 +19,7 @@ export default class CharacterPage extends BaseElement {
     this.loses.element.textContent = `Loses: ${this.localStorage.getLoses()}`;
   }
 
-  createView() {
-    
+  createView() {    
     const choiseCharacterPage = new ChoiseCharacterPage(this.localStorage);
     choiseCharacterPage.element.addEventListener("click", (e) => {
       if (
