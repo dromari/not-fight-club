@@ -12,6 +12,10 @@ button {
   font-size: 30px;
 }
 
+span {
+  margin-right: 10px;
+}
+
 /*-------header--------*/
 
 .header {
@@ -143,6 +147,40 @@ main {
 
 .line-health {
   width: 100%;
+}
+
+.my-character-0,
+.enemy-2,
+.enemy-10 {
+  font-weight: 800;
+  color:rgb(20, 141, 20);
+}
+
+.my-character-2,
+.enemy-0,
+.my-character-10 {
+  font-weight: 800;
+  color: rgb(13, 13, 163);
+}
+
+.my-character-4,
+.enemy-4 {
+  font-weight: 800;
+  color:rgb(192, 109, 0);
+}
+
+.my-character-7,
+.enemy-7,
+.my-character-8,
+.enemy-8 {
+  font-weight: 800;
+  color: rgb(197, 7, 45);
+}
+
+.my-character-11,
+.enemy-11 {
+  font-weight: 800;
+  color:rgb(118, 9, 139);
 }
 
 /*------choise-character-page---------*/

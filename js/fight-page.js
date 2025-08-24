@@ -246,8 +246,7 @@ export default class FightPage extends BaseElement {
 
         if (this.checkInputAttack == 1 && this.checkInputDefence == 2) {
           this.buttonAttack.element.disabled = false;
-        }
-        else {
+        } else {
           this.buttonAttack.element.disabled = true;
         }
       }
@@ -279,25 +278,43 @@ export default class FightPage extends BaseElement {
       this.lineHealthEnemy.element.value = this.enemy.leftoverHealth;
 
       this.textLogBattle[0].forEach((log) => {
-        // console.log(this.textLogBattle[0])
         const logBattle = new BaseElement({
           tag: "p",
           cssClasses: ["log-fight-first-line"],
-          text: log,
+          text: "",
         });
         this.constainerLogFight.element.append(logBattle.element);
-        // console.log(logBattle)
+
+        const logElArr = log.split(" ");
+        logElArr.forEach((logWord, index) => {
+          const span = new BaseElement({
+            tag: "span",
+            cssClasses: ["span", `my-character-${index}`],
+            text: logWord,
+          });
+          logBattle.element.append(span.element);
+        });
       });
 
       this.textLogBattle[1].forEach((log) => {
         const logBattle = new BaseElement({
           tag: "p",
           cssClasses: ["log-fight-second-line"],
-          text: log,
+          text: "",
         });
         this.constainerLogFight.element.append(logBattle.element);
+
+        const logElArr = log.split(" ");
+        logElArr.forEach((logWord, index) => {
+          const span = new BaseElement({
+            tag: "span",
+            cssClasses: ["span", `enemy-${index}`],
+            text: logWord,
+          });
+          logBattle.element.append(span.element);
+        });
       });
-    
+
       if (
         this.myCharacter.leftoverHealth <= 0 ||
         this.enemy.leftoverHealth <= 0
