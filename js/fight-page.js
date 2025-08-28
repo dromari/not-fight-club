@@ -288,7 +288,9 @@ export default class FightPage extends BaseElement {
         this.constainerLogFight.element.append(logBattle.element);
 
         const logElArr = log.split(" ");
+        console.log(logElArr)
         logElArr.forEach((logWord, index) => {
+          console.log(logWord)
           const span = new BaseElement({
             tag: "span",
             cssClasses: ["span", `my-character-${index}`],
